@@ -12,7 +12,7 @@
   };
 
   imports = [ 
-    ./modules/common.nix
+    ./modules/utilities.nix
     ./modules/programs.nix
     ./modules/git.nix
     ./modules/hyprland.nix 
