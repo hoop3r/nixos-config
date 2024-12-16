@@ -30,7 +30,7 @@
               ./modules/hyprland.nix
               ./modules/git.nix
               ./modules/programs.nix
-              ./modules/common.nix
+              ./modules/utilities.nix
             ];
           };
         };
