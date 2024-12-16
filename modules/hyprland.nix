@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    alacritty
+    kitty
     waybar
     dunst
     wofi
