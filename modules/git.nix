@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-
   programs.git = {
     enable = true;
     userName = "hoop3r";

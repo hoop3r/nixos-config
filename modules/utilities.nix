@@ -4,13 +4,14 @@
     unzip
     ripgrep
     fd
+    htop
     neovim
     fastfetch
   ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERMINAL = "alacritty";
+    TERMINAL = "kitty";
   };
 
 }

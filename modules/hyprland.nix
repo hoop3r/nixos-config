@@ -1,16 +1,12 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    hyprland
     kitty
     waybar
     dunst
     wofi
-    hyprland
     wl-clipboard
   ];
 
- # xdg.portal = {
- #   enable = true;
- #   enablePipewire = true;
- # };
 }

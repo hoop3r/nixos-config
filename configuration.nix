@@ -75,6 +75,7 @@
     home-manager
     git    
     wget
+    nano
   ];
 
 
