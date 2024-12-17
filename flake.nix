@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
 
-    firefox-addons.url = "github:nix-community/firefox-addons";
+    firefox-addons.url = "https://github.com/nix-community/nur-combined/tree/master/repos/rycee/pkgs/firefox-addons";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
