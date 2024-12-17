@@ -33,7 +33,7 @@
             extraSpecialArgs = { inherit inputs; };
             modules = [ 
               ./home.nix 
-              #./modules/hyprland.nix
+              ./modules/hyprland.nix
               ./modules/git.nix
               ./modules/programs.nix
               ./modules/utilities.nix
