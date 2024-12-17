@@ -6,12 +6,12 @@
       enable = true;
       extensions = [];
     };
-    
+
     firefox = {
       enable = true;
       profiles.hoop3r = {
 
-        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        extensions = with pkgs.firefox-addons; [
           ublock-origin
         ];
 
