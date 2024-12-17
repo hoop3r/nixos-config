@@ -64,10 +64,9 @@
   
     hyprland.configuration = {
       system.nixos.tags = [ "hyprland" ];
-
-      services.xserver.enable = true;
-      services.xserver.displayManager.sddm.enable = true;
+      
       programs.hyprland.enable = true;
+      services.xserver.desktopManager.gnome.enable = false;
 
       environment.systemPackages = with pkgs; [
         hyprland
