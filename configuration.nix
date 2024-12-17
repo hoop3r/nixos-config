@@ -67,7 +67,7 @@
 
       services.xserver.enable = true;
       services.xserver.displayManager.sddm.enable = true;
-      services.xserver.windowManager.hyprland.enable = true;
+      programs.hyprland.enable = true;
 
       environment.systemPackages = with pkgs; [
         hyprland
@@ -81,6 +81,7 @@
 
       environment.variables = {
         WLR_NO_HARDWARE_CURSORS = "1";
+        XDG_SESSION_TYPE = "wayland";
       };
     };
 
