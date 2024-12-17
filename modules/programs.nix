@@ -1,4 +1,4 @@
-{ pkgs , ... }:
+{ pkgs , inputs, ... }:
 {
   programs = {
 
@@ -11,7 +11,7 @@
       enable = true;
       profiles.hoop3r = {
 
-        extensions = with pkgs.firefox-addons; [
+        extensions = [
           ublock-origin
         ];
 
