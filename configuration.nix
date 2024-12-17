@@ -1,4 +1,3 @@
-
 { config, pkgs, ... }:
 
 {
@@ -11,10 +10,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixbox";
+  networking.networkmanager.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
 
@@ -29,8 +27,6 @@
     xwayland.enable = true;
   };
 
-  services.printing.enable = true;
-
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -38,8 +34,9 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
   };
+
+  services.printing.enable = true;
 
   users.users.hoop3r = {
     isNormalUser = true;
@@ -50,20 +47,60 @@
   };
 
   programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true;
-  dedicatedServer.openFirewall = true; 
-  localNetworkGameTransfers.openFirewall = true; 
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true; 
+    localNetworkGameTransfers.openFirewall = true; 
   };
-  
+
   environment.systemPackages = with pkgs; [
     home-manager
-    git    
+    git
     wget
     nano
   ];
 
+  specialisation = {
+  
+    hyprland.configuration = {
+      system.nixos.tags = [ "hyprland" ];
+
+      services.xserver.enable = true;
+      services.xserver.displayManager.sddm.enable = true;
+      services.xserver.windowManager.hyprland.enable = true;
+
+      environment.systemPackages = with pkgs; [
+        hyprland
+        kitty          
+        waybar         
+        rofi           
+        dunst          
+        swaylock       
+        grim slurp     
+      ];
+
+      environment.variables = {
+        WLR_NO_HARDWARE_CURSORS = "1";
+      };
+    };
+
+    gnome.configuration = {
+      system.nixos.tags = [ "gnome" ];
+
+      services.xserver.enable = true;
+      services.xserver.displayManager.gdm.enable = true;
+      services.xserver.desktopManager.gnome.enable = true;
+
+      environment.systemPackages = with pkgs; [
+        gnome.gnome-tweaks
+        gnome.dconf-editor
+        gnome.gnome-terminal
+        gnome.nautilus
+      ];
+
+      programs.dconf.enable = true;
+    };
+  };
 
   system.stateVersion = "24.11";
-
 }
