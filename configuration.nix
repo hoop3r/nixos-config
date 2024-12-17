@@ -66,7 +66,7 @@
       system.nixos.tags = [ "hyprland" ];
       
       programs.hyprland.enable = true;
-      services.xserver.desktopManager.gnome.enable = false;
+      services.xserver.desktopManager.gnome.enable = lib.mkForce false;
 
       environment.systemPackages = with pkgs; [
         hyprland
