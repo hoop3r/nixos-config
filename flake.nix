@@ -44,7 +44,9 @@
         nixosConfigurations = {
           hoop3r = lib.nixosSystem {
             inherit system pkgs;
-            modules = [ ./configuration.nix ];
+            modules = [ 
+              ./configuration.nix
+            ];
           };
         };
       };
