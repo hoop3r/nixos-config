@@ -4,9 +4,6 @@
 
     zsh = {
       enable = true;
-      ohMyZsh.enable = true;
-      ohMyZsh.theme = "darkblood";
-      enableBashCompletion = true;
     };
 
     vscode = {
