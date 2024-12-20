@@ -16,15 +16,14 @@
 
   networking.networkmanager.enable = true;
 
-  networking.openvpn = {
-  enable = true;
-  clientConfigs = [
-      {
-        name = "homevpn";
-        configFile = "~/HomeLab/vpn-config/OpenVPN-Config.ovpn";
-      }
-    ];
+  
+  services.openvpn.servers = {
+    officeVPN  = {
+      config = '' config /home/hoop3r/HomeLab/vpn-config/OpenVPN-Config.ovpn '';
+      updateResolvConf = true;
+    };
   };
+  
 
   time.timeZone = "America/New_York";
 
@@ -71,6 +70,7 @@
     git    
     wget
     nano
+    openvpn
   ];
 
 
