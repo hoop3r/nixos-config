@@ -11,6 +11,10 @@
       extensions = [];
     };
 
+    stylix = {
+      enable = true;
+    }
+
     firefox = {
       enable = true;
       profiles.hoop3r = {
