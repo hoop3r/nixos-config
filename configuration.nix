@@ -16,6 +16,16 @@
 
   networking.networkmanager.enable = true;
 
+  networking.openvpn = {
+  enable = true;
+  clientConfigs = [
+      {
+        name = "homevpn";
+        configFile = "~/HomeLab/vpn-config/OpenVPN-Config.ovpn";
+      }
+    ];
+  };
+
   time.timeZone = "America/New_York";
 
   services.xserver.enable = true;
