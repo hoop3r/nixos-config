@@ -4,7 +4,7 @@
     hyprland
     fish
     waybar
-    dunsts
+    dunst
     wofi
     wl-clipboard
   ];
