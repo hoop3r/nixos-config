@@ -48,7 +48,6 @@
             inherit system pkgs;
             modules = [ 
               ./configuration.nix
-              stylix.nixosModules.stylix
             ];
           };
         };

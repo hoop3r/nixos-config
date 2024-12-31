@@ -10,5 +10,7 @@
     htop
     neovim
     fastfetch
+    compose2nix
+  
   ];
 }

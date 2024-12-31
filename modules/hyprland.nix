@@ -2,9 +2,9 @@
 {
   home.packages = with pkgs; [
     hyprland
-    kitty
+    fish
     waybar
-    dunst
+    dunsts
     wofi
     wl-clipboard
   ];
