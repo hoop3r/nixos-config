@@ -11,6 +11,6 @@
     neovim
     fastfetch
     compose2nix
-  
+    nettools
   ];
 }
