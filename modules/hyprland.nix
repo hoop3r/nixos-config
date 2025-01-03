@@ -2,11 +2,17 @@
 {
   home.packages = with pkgs; [
     hyprland
-    fish
+    rofi
     waybar
     dunst
-    wofi
-    wl-clipboard
+    kitty
+    swaybg
+    swaylock-fancy
+    swayidle
+    pamixer
+    light
+    brillo
+    nerdfonts
   ];
 
 }
