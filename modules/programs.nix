@@ -2,10 +2,6 @@
 {
   programs = {
 
-    zsh = {
-      enable = true;
-    };
-
     vscode = {
       enable = true;
       extensions = [];
