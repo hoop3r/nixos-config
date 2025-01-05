@@ -46,6 +46,7 @@
     discord
     prismlauncher
     steam
+    gimp
   ];
 
 }
