@@ -44,7 +44,7 @@
   home.packages = with pkgs; [
     teams-for-linux
     discord
-    minecraft
+    prismlauncher
     steam
   ];
 
