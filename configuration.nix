@@ -37,7 +37,7 @@
     enable = true;
     xwayland.enable = true;
   };
-
+  
   services.printing.enable = true;
 
   hardware.pulseaudio.enable = false;
