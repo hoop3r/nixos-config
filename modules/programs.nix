@@ -47,6 +47,7 @@
     prismlauncher
     steam
     gimp
+    cider
   ];
 
 }
