@@ -8,7 +8,7 @@
     dunst
     kitty
     swaybg
-    swaylock
+    hyprlock
     swayidle
     pamixer
     light
