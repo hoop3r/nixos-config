@@ -12,6 +12,5 @@
     fastfetch
     compose2nix
     nettools
-    pdfstudio2024
   ];
 }
