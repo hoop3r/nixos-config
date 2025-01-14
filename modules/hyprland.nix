@@ -14,6 +14,7 @@
     light
     brillo
     nerdfonts
+    grim
   ];
 
 }
