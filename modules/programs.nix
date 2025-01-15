@@ -2,10 +2,6 @@
 {
   programs = {
 
-    wireshark = {
-      enable = true;
-    };
-    
     vscode = {
       enable = true;
     };
@@ -51,6 +47,7 @@
     steam
     gimp
     cider
+    wireshark
   ];
 
 }
