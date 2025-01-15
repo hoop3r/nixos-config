@@ -2,6 +2,10 @@
 {
   programs = {
 
+    wireshark = {
+      enable = true;
+    };
+    
     vscode = {
       enable = true;
     };
