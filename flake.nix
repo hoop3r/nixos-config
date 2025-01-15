@@ -2,9 +2,7 @@
   description = "My Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
-
-    stylix.url = "github:danth/stylix";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
