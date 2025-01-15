@@ -4,7 +4,6 @@
 
     vscode = {
       enable = true;
-      extensions = [];
     };
 
     firefox = {
