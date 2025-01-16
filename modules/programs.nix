@@ -48,6 +48,7 @@
     gimp
     cider
     wireshark
+    drawio
   ];
 
 }
