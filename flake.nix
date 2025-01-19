@@ -2,8 +2,8 @@
   description = "My Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
-
+    # nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:V3ntus/nixpkgs/tree/wazuh-agent";
     stylix.url = "github:danth/stylix";
 
     firefox-addons = {
