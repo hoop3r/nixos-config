@@ -12,5 +12,6 @@
     fastfetch
     compose2nix
     nettools
+    docker
   ];
 }
