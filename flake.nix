@@ -2,18 +2,19 @@
   description = "My Home Manager configuration";
 
   inputs = {
+
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "nixpkgs/nixos-24.11";
-    stylix.url = "github:danth/stylix";
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
@@ -29,24 +30,35 @@
     in
       {
         homeConfigurations = {
-          hoop3r = home-manager.lib.homeManagerConfiguration {
+          thinkpad = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = { inherit inputs; };
             modules = [ 
-              ./home.nix 
-              ./modules/hyprland.nix
-              ./modules/git.nix
-              ./modules/programs.nix
-              ./modules/utilities.nix
+
             ];
           };
         };
 
         nixosConfigurations = {
-          hoop3r = lib.nixosSystem {
+          thinkpad = lib.nixosSystem {
             inherit system pkgs;
             modules = [ 
               ./configuration.nix
+              ./home.nix 
+              ./modules
+              ./hosts/thinkpad/configuration.nix
+              ./hosts/thinkpad/hardware-configuration.nix
+
+              {
+                modules = {
+                  git.enable = true;
+                  hyprland.enable = true;
+                  programs.enable = true;
+                  utilities.enable = true;
+                };
+              }
+              ./users
+              ./users/hoop3r
             ];
           };
         };

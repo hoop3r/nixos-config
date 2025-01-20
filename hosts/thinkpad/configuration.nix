@@ -1,0 +1,69 @@
+
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [
+      ./hardware-configuration.nix
+    ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "thinkpad";
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  networking.networkmanager.enable = true;
+
+  services.openvpn.servers = {
+    officeVPN  = {
+      config = '' config /home/hoop3r/HomeLab/vpn-config/OpenVPN-Config.ovpn '';
+      updateResolvConf = true;
+    };
+  };
+  
+  time.timeZone = "America/New_York";
+
+  services.xserver.enable = true;
+
+ # services.xserver.displayManager.gdm.enable = true;
+ # services.xserver.desktopManager.gnome.enable = true;
+ # services.xserver.displayManager.gdm.wayland = true;
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  
+  services.printing.enable = true;
+
+  security.rtkit.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true; 
+    localNetworkGameTransfers.openFirewall = true; 
+  };
+  
+  environment.systemPackages = with pkgs; [
+    home-manager
+    git    
+    wget
+    nano
+    openvpn
+  ];
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  system.stateVersion = "24.11";
+
+}

@@ -1,5 +1,21 @@
-{ pkgs , inputs, ... }:
-{
+{ pkgs, lib, config, ... }:
+
+
+with lib;
+let cfg = config.modules.programs;
+
+
+
+in {
+
+  options.modules.programs = {
+    enable = mkEnableOption "programs";
+    packages = mkOption {
+      type = types.bool;
+      default = true;
+    };
+  };
+
   programs = {
 
     vscode = {
@@ -39,16 +55,17 @@
       };
     };
   };
+  config = mkIf cfg.enable {
 
-  home.packages = with pkgs; [
-    teams-for-linux
-    discord
-    prismlauncher
-    steam
-    gimp
-    cider
-    wireshark
-    drawio
-  ];
-
+    home.packages = with pkgs; [
+      teams-for-linux
+      discord
+      prismlauncher
+      steam
+      gimp
+      cider
+      wireshark
+      drawio
+    ];
+  }
 }
