@@ -46,7 +46,7 @@
     prismlauncher
     steam
     gimp
-    cider-2
+    cider
     wireshark
     drawio
   ];
