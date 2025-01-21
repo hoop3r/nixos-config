@@ -67,9 +67,6 @@
 
 
   virtualisation.docker.enable = true;
-  systemd.services.docker.enable = true;
-  services.docker.socket.enable = true;
-
   
   environment.systemPackages = with pkgs; [
     home-manager
@@ -77,7 +74,9 @@
     wget
     nano
     openvpn
+    docker
   ];
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
 
