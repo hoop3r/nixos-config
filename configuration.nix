@@ -53,7 +53,7 @@
   users.users.hoop3r = {
     isNormalUser = true;
     description = "Nicholas Hooper";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     ];
   };
@@ -64,6 +64,12 @@
   dedicatedServer.openFirewall = true; 
   localNetworkGameTransfers.openFirewall = true; 
   };
+
+
+  virtualisation.docker.enable = true;
+  systemd.services.docker.enable = true;
+  services.docker.socket.enable = true;
+
   
   environment.systemPackages = with pkgs; [
     home-manager
