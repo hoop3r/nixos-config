@@ -75,6 +75,7 @@
     nano
     openvpn
     docker
+    dotnet-sdk
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

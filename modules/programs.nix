@@ -49,6 +49,7 @@
     cider
     wireshark
     drawio
+    slack
   ];
 
 }
