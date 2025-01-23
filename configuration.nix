@@ -76,10 +76,15 @@
     openvpn
     docker
     dotnet-sdk
+    protonup
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
+  
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS =
+      "\${HOME}/.steam/root/compatibilitytools.d";
+  };
 
   system.stateVersion = "24.11";
 
