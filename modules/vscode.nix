@@ -3,16 +3,15 @@ let
   dotnet-full =
     with pkgs.dotnetCorePackages;
     combinePackages [
-      sdk_8_0
-      runtime_8_0
-      aspnetcore_8_0
+      sdk_8_0_3xx
+      dotnet_8.runtime
+      dotnet_8.aspnetcore
     ];
 
   deps = (
     ps:
     with ps;
     [
-      rustup
       zlib
       openssl.dev
       pkg-config
@@ -39,6 +38,5 @@ in
           '';
       })).fhsWithPackages
         (ps: deps ps);
-    extensions = [ pkgs.vscode-extensions.sonarsource.sonarlint-vscode ];
   };
 }

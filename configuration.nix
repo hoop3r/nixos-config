@@ -75,7 +75,6 @@
     nano
     openvpn
     docker
-    dotnet-sdk
     protonup
     nh
   ];
