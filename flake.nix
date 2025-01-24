@@ -38,7 +38,7 @@
               ./modules/git.nix
               ./modules/programs.nix
               ./modules/utilities.nix
-              ./modules/shell.nix
+              ./modules/vscode.nix
             ];
           };
         };

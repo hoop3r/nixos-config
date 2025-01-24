@@ -2,10 +2,6 @@
 {
   programs = {
 
-    vscode = {
-      enable = true;
-    };
-
     firefox = {
       enable = true;
       profiles.hoop3r = {
