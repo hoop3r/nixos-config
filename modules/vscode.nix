@@ -11,20 +11,15 @@ let
     dotnet_aspnetcore
   ];
 
-  dotnet_deps = [
-    mono
-    msbuild
-  ];
-
-  dev_deps = [
+  deps = ps: with ps; [
     zlib
     openssl.dev
     pkg-config
     stdenv.cc
     cmake
-  ];
-
-  deps = ps: with ps; dev_deps ++ dotnet_deps ++ [ dotnet_full ];
+    mono
+    msbuild
+  ] ++ [ dotnet_full ];
 in
 {
   programs.vscode = {
@@ -37,5 +32,6 @@ in
           --prefix PATH : "~/.dotnet/tools"
       '';
     }).fhsWithPackages (ps: deps ps);
+    extensions = [];
   };
 }
