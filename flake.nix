@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
-    stylix.url = "github:danth/stylix";
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -14,9 +13,10 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
-  outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let 
       system = "x86_64-linux";
       pkgs = import nixpkgs { 
@@ -29,7 +29,7 @@
     in
       {
         homeConfigurations = {
-          hoop3r = home-manager.lib.homeManagerConfiguration {
+          thinkpad = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = { inherit inputs; };
             modules = [ 
@@ -38,12 +38,13 @@
               ./modules/git.nix
               ./modules/programs.nix
               ./modules/utilities.nix
+              ./modules/shell.nix
             ];
           };
         };
 
         nixosConfigurations = {
-          hoop3r = lib.nixosSystem {
+          thinkpad = lib.nixosSystem {
             inherit system pkgs;
             modules = [ 
               ./configuration.nix

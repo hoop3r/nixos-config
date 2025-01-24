@@ -10,7 +10,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixbox";
+  networking.hostName = "thinkpad";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -47,7 +47,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
   };
 
   users.users.hoop3r = {
@@ -59,10 +58,10 @@
   };
 
   programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true;
-  dedicatedServer.openFirewall = true; 
-  localNetworkGameTransfers.openFirewall = true; 
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true; 
+    localNetworkGameTransfers.openFirewall = true; 
   };
 
 
@@ -77,14 +76,18 @@
     docker
     dotnet-sdk
     protonup
+    nh
   ];
-
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   
   environment.sessionVariables = {
+
+    NIXOS_OZONE_WL = "1";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
       "\${HOME}/.steam/root/compatibilitytools.d";
+    FLAKE = "/home/.config/nixos-config";
+
   };
+
 
   system.stateVersion = "24.11";
 

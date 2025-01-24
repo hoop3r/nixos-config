@@ -16,6 +16,7 @@
     ./modules/programs.nix
     ./modules/git.nix
     ./modules/hyprland.nix 
+    ./modules/shell.nix
   ];
 }
 
