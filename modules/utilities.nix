@@ -12,5 +12,7 @@
     fastfetch
     compose2nix
     nettools
+    gcc
+    
   ];
 }

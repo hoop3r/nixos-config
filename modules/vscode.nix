@@ -22,20 +22,23 @@ let
   ] ++ [ dotnet-full ];
 in
 {
-  programs.vscode = {
-    enable = true;
-    package =
-      (pkgs.vscode.overrideAttrs (prevAttrs: {
-        nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ pkgs.makeWrapper ];
-        postFixup =
-          prevAttrs.postFixup
-          + ''
-            wrapProgram $out/bin/code \
-              --set DOTNET_ROOT "${dotnet-full}" \
-              --prefix PATH : "~/.dotnet/tools"
-          '';
-      })).fhsWithPackages
-        (ps: deps ps);
-    extensions = [  ];
-  };
+
+ programs.vscode = {
+  enable = true;
+  package =
+    (pkgs.vscode.overrideAttrs (prevAttrs: {
+      nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ pkgs.makeWrapper ];
+      postFixup =
+        prevAttrs.postFixup
+        + ''
+          wrapProgram $out/bin/code \
+            --set DOTNET_ROOT "${dotnet_sdk}/share/dotnet" \
+            --prefix PATH : "${dotnet_sdk}/share/dotnet/tools"
+        '';
+    })).fhsWithPackages
+      (ps: deps ps);
+  extensions = [
+  ];
+};
+
 }
