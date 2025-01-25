@@ -2,7 +2,13 @@
   description = "My Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
+
+  
+    nixpkgs = {
+      url = "nixpkgs/nixos-24.11";
+      config.permittedInsecurePackages = ["dotnet-sdk-6.0.136"];
+
+    };
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -14,6 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:

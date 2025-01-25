@@ -9,6 +9,7 @@ let
     dotnet_sdk
     dotnet_runtime
     dotnet_aspnetcore
+    sdk_6_0_1xx
   ];
 
   deps = ps: with ps; [

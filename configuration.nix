@@ -87,8 +87,7 @@
     FLAKE = "/home/.config/nixos-config";
 
   };
-
-
+  
   system.stateVersion = "24.11";
 
 }
