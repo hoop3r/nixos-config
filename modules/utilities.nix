@@ -13,6 +13,6 @@
     compose2nix
     nettools
     gcc
-    
+    icu
   ];
 }
