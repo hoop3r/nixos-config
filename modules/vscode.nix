@@ -19,7 +19,7 @@ let
     stdenv.cc
     cmake
     mono
-    # msbuild
+    msbuild
   ] ++ [ dotnet-full ];
 in
 {

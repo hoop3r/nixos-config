@@ -6,8 +6,6 @@
   
     nixpkgs = {
       url = "nixpkgs/nixos-24.11";
-      config.permittedInsecurePackages = ["dotnet-sdk-6.0.136"];
-
     };
 
     firefox-addons = {
@@ -30,6 +28,7 @@
         inherit system; 
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = ["dotnet-sdk-6.0.136" "dotnet-sdk-6.0.428"];
         };
       };
       lib = nixpkgs.lib;
