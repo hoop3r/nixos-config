@@ -19,7 +19,7 @@
   
   services.openvpn.servers = {
     officeVPN  = {
-      config = '' config /home/hoop3r/HomeLab/vpn-config/OpenVPN-Config.ovpn '';
+      config = '' config /home/hoop3r/Lab/HoopHQ/vpn-config/OpenVPN-Config.ovpn '';
       updateResolvConf = true;
     };
   };
