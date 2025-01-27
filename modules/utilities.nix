@@ -14,5 +14,6 @@
     nettools
     gcc
     icu
+    docker-compose
   ];
 }
