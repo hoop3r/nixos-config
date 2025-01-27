@@ -13,6 +13,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/2aca6689-a5ef-4564-b3e7-7857a8b5d09c";
       fsType = "ext4";
+      options = [ "rw" ]
     };
 
   fileSystems."/boot" =
