@@ -33,8 +33,7 @@
           thinkpad = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = { inherit inputs; };
-            modules = [ 
-
+            modules = [
             ];
           };
         };
@@ -43,8 +42,6 @@
           thinkpad = lib.nixosSystem {
             inherit system pkgs;
             modules = [ 
-              ./configuration.nix
-              ./home.nix 
               ./modules
               ./hosts/thinkpad/configuration.nix
               ./hosts/thinkpad/hardware-configuration.nix
