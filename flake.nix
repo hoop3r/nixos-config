@@ -3,7 +3,6 @@
 
   inputs = {
 
-  
     nixpkgs = {
       url = "nixpkgs/nixos-24.11";
     };
@@ -26,19 +25,6 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { 
         inherit system; 
-
-         overlays = [
-          (self: super: {
-            config = super.config // {
-              permittedInsecurePackages = [
-                "dotnet-sdk-6.0.136"
-                "dotnet-sdk-6.0.428"
-              ];
-            };
-          })
-        ];
-
-
         config = {
           allowUnfree = true;
         };
