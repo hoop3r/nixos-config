@@ -87,6 +87,9 @@
     FLAKE = "/home/.config/nixos-config";
 
   };
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "hoop3r" ];
   
   system.stateVersion = "24.11";
 
