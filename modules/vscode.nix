@@ -12,6 +12,7 @@ let
   ];
 
   deps = ps: with ps; [
+    python3
     zlib
     openssl.dev
     pkg-config

@@ -15,6 +15,7 @@
     brillo
     nerdfonts
     hyprshot
+    playerctl
   ];
 
 }
