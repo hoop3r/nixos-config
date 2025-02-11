@@ -15,5 +15,6 @@
     gcc
     icu
     docker-compose
+    vagrant
   ];
 }

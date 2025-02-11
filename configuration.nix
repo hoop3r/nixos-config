@@ -52,7 +52,7 @@
   users.users.hoop3r = {
     isNormalUser = true;
     description = "Nicholas Hooper";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd"];
     packages = with pkgs; [
     ];
   };
@@ -88,9 +88,23 @@
 
   };
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "hoop3r" ];
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [(pkgs.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        }).fd];
+      };
+    };
+  };
   
+
   system.stateVersion = "24.11";
 
 }
