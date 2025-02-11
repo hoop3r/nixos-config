@@ -37,12 +37,18 @@
 
     zsh = {
       enable = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-      ohMyZsh = {
-        enable = true;
-        plugins = [ "git" "docker" ];
-      }
+      #enableCompletion = true;
+      #autosuggestions.enable = true;
+      #syntaxHighlighting.enable = true;
+      #shellAliases = {
+      #  ll = "ls -l";
+      #};
+      #histSize = 10000;
+      #oh-my-zsh = {
+      #  enable = true;
+      #  plugins = [ "git" "docker" "docker-compose" "ufw" "systemd"];
+      #  theme = "robbyrussell";
+      #};
     };
 
   };
