@@ -16,6 +16,8 @@
     nerdfonts
     hyprshot
     playerctl
+    brightnessctl
+    wl-clipboard
   ];
 
 }

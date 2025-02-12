@@ -17,6 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -28,12 +29,20 @@
           allowUnfree = true;
         };
       };
-      lib = nixpkgs.lib;
+
+    packageOverrides = pkgs.callPackage ./python-packages.nix {};
+    python = pkgs.python3.override { 
+      inherit packageOverrides; 
+    };
+
+    lib = nixpkgs.lib;
+      
     in
       {
-        devShell.x86_64-linux = pkgs.mkShell {
+        
+        devShells.x86_64-linux.default = pkgs.mkShell {
           buildInputs = [
-
+            (python.withPackages (p: [ p.requests ]))
           ];
         };
 
@@ -60,5 +69,6 @@
             ];
           };
         };
+
       };
 }
