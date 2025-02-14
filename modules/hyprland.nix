@@ -18,6 +18,8 @@
     playerctl
     brightnessctl
     wl-clipboard
+    asciiquarium
+    lavat
   ];
 
 }

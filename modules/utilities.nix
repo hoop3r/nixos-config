@@ -16,5 +16,7 @@
     icu
     docker-compose
     vagrant
+    git-graph
+    minicom
   ];
 }

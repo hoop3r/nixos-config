@@ -52,11 +52,9 @@
   users.users.hoop3r = {
     isNormalUser = true;
     description = "Nicholas Hooper";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd"];
-    packages = with pkgs; [
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout"];
+    defaultUserShell = pkgs.zsh;
   };
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;

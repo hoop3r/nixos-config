@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 let
+
   dotnet_sdk = pkgs.dotnetCorePackages.dotnet_8.sdk;
   dotnet_runtime = pkgs.dotnetCorePackages.dotnet_8.runtime;
   dotnet_aspnetcore = pkgs.dotnetCorePackages.dotnet_8.aspnetcore;
@@ -12,6 +13,9 @@ let
   ];
 
   deps = ps: with ps; [
+    (python311.withPackages (p: with p; [
+    python311Packages.pyserial
+    ]))
     zlib
     openssl.dev
     pkg-config
@@ -24,6 +28,7 @@ in
 
  programs.vscode = {
   enable = true;
+  
   package =
     (pkgs.vscode.overrideAttrs (prevAttrs: {
       nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ pkgs.makeWrapper ];
