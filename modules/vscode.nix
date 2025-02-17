@@ -6,6 +6,11 @@ let
   dotnet_runtime = pkgs.dotnetCorePackages.dotnet_8.runtime;
   dotnet_aspnetcore = pkgs.dotnetCorePackages.dotnet_8.aspnetcore;
 
+  packageOverrides = pkgs.callPackage ../python-packages.nix {};
+  python = pkgs.python3.override { 
+    inherit packageOverrides; 
+  };
+
   dotnet-full = with pkgs.dotnetCorePackages; combinePackages [
     dotnet_sdk
     dotnet_runtime
@@ -13,9 +18,22 @@ let
   ];
 
   deps = ps: with ps; [
-    (python311.withPackages (p: with p; [
-    python311Packages.pyserial
-    ]))
+    (python.withPackages (p: [
+       p.requests 
+       p.picozero 
+       p.board 
+       p.typing-extensions 
+       p.adafruit-circuitpython-typing 
+       p.Adafruit-PureIO 
+       p.adafruit-circuitpython-busdevice 
+       p.adafruit-circuitpython-requests 
+       p.adafruit-circuitpython-sht31d 
+       p.Adafruit-Blinka 
+       p.Adafruit-PlatformDetect 
+       p.pyserial
+       p.pyusb
+       p.sysv-ipc]))
+
     zlib
     openssl.dev
     pkg-config

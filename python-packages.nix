@@ -79,4 +79,260 @@ self: super: {
     nativeBuildInputs = [];
     propagatedBuildInputs = [];
   };
+    "Adafruit-Blinka" = super.buildPythonPackage rec {
+    pname = "Adafruit-Blinka";
+    version = "8.53.0";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/59/83/75031ecb9645697bb6ebddda8b60a0512bdf6c0db43b5365053cd2c8654a/Adafruit_Blinka-8.53.0-py3-none-any.whl";
+      sha256 = "1k2pw42kkybrgf6xkjcz9mkhm7lvqpbq3ln30hs6s76dwprrl4j2";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."Adafruit-PlatformDetect"
+      self."Adafruit-PureIO"
+      self."adafruit-circuitpython-typing"
+      self."binho-host-adapter"
+      self."pyftdi"
+      self."sysv-ipc"
+    ];
+  };
+  "Adafruit-Circuitpython-ConnectionManager" = super.buildPythonPackage rec {
+    pname = "Adafruit-Circuitpython-ConnectionManager";
+    version = "3.1.3";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/55/7d/896b31bd31eff89e5cab5d3acec9d3d34f5a0654ceab25e01865e628d9f9/adafruit_circuitpython_connectionmanager-3.1.3-py3-none-any.whl";
+      sha256 = "1sns16rmr39cd8fbw7l3im4wh4j310d7yq683anppqns2z3a9wwx";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."Adafruit-Blinka"
+    ];
+  };
+  "Adafruit-PlatformDetect" = super.buildPythonPackage rec {
+    pname = "Adafruit-PlatformDetect";
+    version = "3.77.0";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/30/18/b18e9ff2aee42f03082675c5d18d4eb02411477e07c86d74833d3396792e/Adafruit_PlatformDetect-3.77.0-py3-none-any.whl";
+      sha256 = "1gh9fi02zrk3i0si2zgq99640xiq0sjrpiiaqcmxkckx3v19kxck";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
+  "Adafruit-PureIO" = super.buildPythonPackage rec {
+    pname = "Adafruit-PureIO";
+    version = "1.1.11";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/19/9d/28e9d12f36e13c5f2acba3098187b0e931290ecd1d8df924391b5ad2db19/Adafruit_PureIO-1.1.11-py3-none-any.whl";
+      sha256 = "0kijkl1gmvji9mvc8kk9xn71pwnbjs4r29k3qbn0vk3jjc4v46i8";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
+  "adafruit-circuitpython-busdevice" = super.buildPythonPackage rec {
+    pname = "adafruit-circuitpython-busdevice";
+    version = "5.2.11";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/e0/c7/9f0e2b2674cb5b1fb35d067a7585a2a76596a36044264eb390980d428ccf/adafruit_circuitpython_busdevice-5.2.11-py3-none-any.whl";
+      sha256 = "1f44jc6717ngfl7gmcn0lykfvaawaaa5m0ga9l2gf5bax2d9qdyl";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."Adafruit-Blinka"
+      self."adafruit-circuitpython-typing"
+    ];
+  };
+  "adafruit-circuitpython-requests" = super.buildPythonPackage rec {
+    pname = "adafruit-circuitpython-requests";
+    version = "4.1.9";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/b7/40/ff356fd61ef3ea044b7944687d62419c304217381ee20d9fa444aeb98339/adafruit_circuitpython_requests-4.1.9-py3-none-any.whl";
+      sha256 = "14vw20hgm68ri6b19338p6kqsprzwidn5aahkamkw57gqscsiw6h";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."Adafruit-Blinka"
+      self."Adafruit-Circuitpython-ConnectionManager"
+    ];
+  };
+  "adafruit-circuitpython-sht31d" = super.buildPythonPackage rec {
+    pname = "adafruit-circuitpython-sht31d";
+    version = "2.3.26";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/d7/dd/65fba46fe29d3de8107fabf1bd892887fe0316f11e1d3168620bcde6feca/adafruit_circuitpython_sht31d-2.3.26-py3-none-any.whl";
+      sha256 = "0lv90cd1d6jnwwmwyvx9x91rmaij8x73by7057vsfhdzx1vfi79r";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."Adafruit-Blinka"
+      self."adafruit-circuitpython-busdevice"
+      self."adafruit-circuitpython-typing"
+      self."typing-extensions"
+    ];
+  };
+  "adafruit-circuitpython-typing" = super.buildPythonPackage rec {
+    pname = "adafruit-circuitpython-typing";
+    version = "1.11.2";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/dd/d5/76a6bca9cf08907b48dfc8ccbccbd190155353f521876e02d6b7bb244003/adafruit_circuitpython_typing-1.11.2-py3-none-any.whl";
+      sha256 = "072y8avpcxmxb7vwij8j3cwaivgh79dpbijwhx1pxxpxpc4ilh71";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."Adafruit-Blinka"
+      self."adafruit-circuitpython-busdevice"
+      self."adafruit-circuitpython-requests"
+      self."typing-extensions"
+    ];
+  };
+  "binho-host-adapter" = super.buildPythonPackage rec {
+    pname = "binho-host-adapter";
+    version = "0.1.6";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/7b/6b/0f13486003aea3eb349c2946b7ec9753e7558b78e35d22c938062a96959c/binho_host_adapter-0.1.6-py3-none-any.whl";
+      sha256 = "0xy2gr8g79l2s8p5z03wdif5a5x2dllfp2qjrrfimz72q5va277p";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."pyserial"
+    ];
+  };
+  "pyftdi" = super.buildPythonPackage rec {
+    pname = "pyftdi";
+    version = "0.56.0";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/5a/96/a8de7b7e5556d4b00d1ca1969fc34c89a1b6d177876c7a31d42631b090fc/pyftdi-0.56.0-py3-none-any.whl";
+      sha256 = "1c5q735l86facmvw2rhvrqvfsvfiqbx6dbi3svlxscchpynvmw1y";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+      self."pyserial"
+      self."pyusb"
+    ];
+  };
+  "pyserial" = super.buildPythonPackage rec {
+    pname = "pyserial";
+    version = "3.5";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/07/bc/587a445451b253b285629263eb51c2d8e9bcea4fc97826266d186f96f558/pyserial-3.5-py2.py3-none-any.whl";
+      sha256 = "1w1c5z0gxvjcl73n828pvrfwb9b7mrxyrcwz575ac71rpav1sif4";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
+  "pyusb" = super.buildPythonPackage rec {
+    pname = "pyusb";
+    version = "1.3.1";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/28/b8/27e6312e86408a44fe16bd28ee12dd98608b39f7e7e57884a24e8f29b573/pyusb-1.3.1-py3-none-any.whl";
+      sha256 = "0c04dafw1nj5agdppl88bhgiba93p717rc62h3z1fixgax2pb6xz";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
+  "sysv-ipc" = super.buildPythonPackage rec {
+    pname = "sysv-ipc";
+    version = "1.1.0";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/0c/d7/5d2f861155e9749f981e6c58f2a482d3ab458bf8c35ae24d4b4d5899ebf9/sysv_ipc-1.1.0.tar.gz";
+      sha256 = "1hws2akrwn01k4pz76iv31yml68zhyy9wxi5whr208zc6sykq1hg";
+    };
+    format = "setuptools";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
+  "typing-extensions" = super.buildPythonPackage rec {
+    pname = "typing-extensions";
+    version = "4.12.2";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl";
+      sha256 = "03bhjivpvdhn4c3x0963z89hv7b5vxr415akd1fgiwz0a41wmr84";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
+    "picozero" = super.buildPythonPackage rec {
+    pname = "picozero";
+    version = "0.4.2";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/f5/b5/8a241bbd029b5116d36070ebc0f13caa6efa3a77cfe174e889418e60b8f4/picozero-0.4.2.tar.gz";
+      sha256 = "0y3hw0c0ga6b9d879wwny45xhs7rv9xnd6dblmgscgl0m1bv81x5";
+    };
+    format = "setuptools";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
+    "board" = super.buildPythonPackage rec {
+    pname = "board";
+    version = "1.0";
+    src = fetchurl {
+      url = "https://files.pythonhosted.org/packages/bd/b8/461dae0fae64be12d818efab745d520bcf4a96195ccbd5028d58d042e68b/board-1.0-py2.py3-none-any.whl";
+      sha256 = "0bryqqnd7c7145p7jwpnhw5m45c5rmcqkqkz38cab8lh05nrhz5r";
+    };
+    format = "wheel";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
+  };
 }
+
+

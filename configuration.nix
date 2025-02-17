@@ -53,9 +53,10 @@
     isNormalUser = true;
     description = "Nicholas Hooper";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout"];
-    shell = pkgs.zsh;
   };
   
+  programs.zsh.enable = true;
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
