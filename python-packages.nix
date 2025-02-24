@@ -157,8 +157,8 @@ self: super: {
     checkInputs = [];
     nativeBuildInputs = [];
     propagatedBuildInputs = [
-      self."Adafruit-Blinka"
-      self."adafruit-circuitpython-typing"
+      # self."Adafruit-Blinka"
+      # self."adafruit-circuitpython-typing"
     ];
   };
   "adafruit-circuitpython-requests" = super.buildPythonPackage rec {
@@ -174,8 +174,8 @@ self: super: {
     checkInputs = [];
     nativeBuildInputs = [];
     propagatedBuildInputs = [
-      self."Adafruit-Blinka"
-      self."Adafruit-Circuitpython-ConnectionManager"
+      # self."Adafruit-Blinka"
+      # self."Adafruit-Circuitpython-ConnectionManager"
     ];
   };
   "adafruit-circuitpython-sht31d" = super.buildPythonPackage rec {
@@ -191,10 +191,10 @@ self: super: {
     checkInputs = [];
     nativeBuildInputs = [];
     propagatedBuildInputs = [
-      self."Adafruit-Blinka"
-      self."adafruit-circuitpython-busdevice"
-      self."adafruit-circuitpython-typing"
-      self."typing-extensions"
+      # self."Adafruit-Blinka"
+      # self."adafruit-circuitpython-busdevice"
+      # self."adafruit-circuitpython-typing"
+      # self."typing-extensions"
     ];
   };
   "adafruit-circuitpython-typing" = super.buildPythonPackage rec {
@@ -210,10 +210,10 @@ self: super: {
     checkInputs = [];
     nativeBuildInputs = [];
     propagatedBuildInputs = [
-      self."Adafruit-Blinka"
-      self."adafruit-circuitpython-busdevice"
-      self."adafruit-circuitpython-requests"
-      self."typing-extensions"
+      # self."Adafruit-Blinka"
+      # self."adafruit-circuitpython-busdevice"
+      # self."adafruit-circuitpython-requests"
+      # self."typing-extensions"
     ];
   };
   "binho-host-adapter" = super.buildPythonPackage rec {
@@ -305,7 +305,7 @@ self: super: {
     nativeBuildInputs = [];
     propagatedBuildInputs = [];
   };
-    "picozero" = super.buildPythonPackage rec {
+  "picozero" = super.buildPythonPackage rec {
     pname = "picozero";
     version = "0.4.2";
     src = fetchurl {
@@ -319,7 +319,8 @@ self: super: {
     nativeBuildInputs = [];
     propagatedBuildInputs = [];
   };
-    "board" = super.buildPythonPackage rec {
+
+  "board" = super.buildPythonPackage rec {
     pname = "board";
     version = "1.0";
     src = fetchurl {

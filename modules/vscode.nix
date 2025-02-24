@@ -21,7 +21,6 @@ let
     (python.withPackages (p: [
        p.requests 
        p.picozero 
-       p.board 
        p.typing-extensions 
        p.adafruit-circuitpython-typing 
        p.Adafruit-PureIO 
@@ -30,9 +29,7 @@ let
        p.adafruit-circuitpython-sht31d 
        p.Adafruit-Blinka 
        p.Adafruit-PlatformDetect 
-       p.pyserial
-       p.pyusb
-       p.sysv-ipc]))
+      ]))
 
     zlib
     openssl.dev
@@ -40,6 +37,7 @@ let
     stdenv.cc
     cmake
     mono
+    dotnet-ef
   ] ++ [ dotnet-full ];
 in
 {
