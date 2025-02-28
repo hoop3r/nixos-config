@@ -29,6 +29,7 @@ let
        p.adafruit-circuitpython-sht31d 
        p.Adafruit-Blinka 
        p.Adafruit-PlatformDetect 
+       p.matplotlib
       ]))
 
     zlib
