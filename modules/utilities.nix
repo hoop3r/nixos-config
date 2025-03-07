@@ -18,5 +18,7 @@
     vagrant
     git-graph
     minicom
-  ];
+    clamav
+    ];
 }
+

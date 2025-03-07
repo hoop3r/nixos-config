@@ -52,7 +52,8 @@
   users.users.hoop3r = {
     isNormalUser = true;
     description = "Nicholas Hooper";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" "wireshark"];
+    shell = pkgs.zsh;
   };
   
   programs.zsh.enable = true;
@@ -77,6 +78,7 @@
     docker
     protonup
     nh
+    gparted
   ];
   
   environment.sessionVariables = {
