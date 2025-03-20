@@ -19,6 +19,7 @@
     git-graph
     minicom
     clamav
+    thonny
     ];
 }
 
