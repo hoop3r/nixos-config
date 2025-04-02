@@ -45,6 +45,7 @@
     drawio
     slack
     wireshark
+    ghidra
   ];
 
 }
