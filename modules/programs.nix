@@ -46,6 +46,8 @@
     slack
     wireshark
     ghidra
+    burpsuite
+    postman
   ];
 
 }
