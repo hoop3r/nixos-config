@@ -19,6 +19,10 @@
     git-graph
     minicom
     clamav
+    binwalk
+    autopsy
+    imhex
+    virt-manager
     ];
 }
 

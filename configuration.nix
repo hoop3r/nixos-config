@@ -1,5 +1,5 @@
 
-{ config, pkgs, ... }:
+{lib, config, pkgs, ... }:
 
 {
   imports =
@@ -15,7 +15,12 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.networkmanager.enable = true;
-
+  
+  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+ 
+  services.xserver.displayManager.sessionCommands = ''
+    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+  '';
   
   services.openvpn.servers = {
     officeVPN  = {
