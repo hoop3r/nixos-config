@@ -22,7 +22,7 @@
     binwalk
     autopsy
     imhex
-    virt-manager
+    powershell
     ];
 }
 
