@@ -1,36 +1,36 @@
-{ lib, pkgs, inputs, callPackage, config, ... }:
+{ lib, pkgs, ... }:
+
 {
   nixpkgs.config.allowUnfree = true;
-  
 
-  home = {
+  home.username      = "hoop3r";
+  home.homeDirectory = "/home/hoop3r";
+  home.stateVersion  = "24.11";
 
-    username = "hoop3r";
-    homeDirectory = "/home/hoop3r";
+  home.file.".zshrc".source = ./dotfiles/.zshrc;
 
-    stateVersion = "24.11";
-    file = { 
-      ".zshrc" = {
-        source = ./dotfiles/zshrc;
-      };
-      ".config/hypr/hyprlock.conf" = {
-        source = ./dotfiles/hyprlock.conf;
-      };
-      ".config/hypr/hyprland.conf" = {
-        source = ./dotfiles/hyprland.conf;
-      };
-      ".config/hypr/keybindings.conf" = {
-        source = ./dotfiles/hyprkeys.conf;
-      };
+  xdg.enable = true; 
+
+  xdg.configFile = {
+    "hypr/hyprlock.conf" = {
+      source = ./dotfiles/hyprlock.conf;
+      force  = true;
+    };
+    "hypr/hyprland.conf" = {
+      source = ./dotfiles/hyprland.conf;
+      force  = true;
+    };
+    "hypr/keybindings.conf" = {
+      source = ./dotfiles/hyprkeys.conf;
+      force  = true;
     };
   };
 
-  imports = [ 
+  imports = [
     ./modules/utilities.nix
     ./modules/programs.nix
     ./modules/git.nix
-    ./modules/hyprland.nix 
+    ./modules/hyprland.nix
     ./modules/vscode.nix
   ];
 }
-
