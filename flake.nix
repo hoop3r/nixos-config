@@ -43,19 +43,15 @@
     in
       {
         
-        devShells.x86_64-linux.default = pkgs.mkShell {
-          buildInputs = [
-            (python.withPackages (p: [ p.requests p.pygobject3 ]))
-            pkgs.playerctl
-            pkgs.gobject-introspection
-            pkgs.gtk3
-            pkgs.libffi
-          ];
+        # devShells.x86_64-linux.default = pkgs.mkShell {
+        #   buildInputs = [
+        #     (python.withPackages (p: [ p.requests p.pygobject3 ]))
+        #   ];
 
-          shellHook = ''
-            export GI_TYPELIB_PATH=${pkgs.gtk3}/lib/girepository-1.0:${pkgs.playerctl.override { introspection = true; }}/lib/girepository-1.0
-          '';
-        };
+        #   shellHook = ''
+        #     export GI_TYPELIB_PATH=${pkgs.gtk3}/lib/girepository-1.0:${pkgs.playerctl.override { introspection = true; }}/lib/girepository-1.0
+        #   '';
+        # };
 
         homeConfigurations = {
           thinkpad = home-manager.lib.homeManagerConfiguration {

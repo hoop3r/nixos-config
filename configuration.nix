@@ -110,8 +110,11 @@
       };
     };
   };
-  
 
+  security.pam.services.hyprlock = {};
+
+  services.thermald.enable = lib.mkDefault true;
+  services.fprintd.enable = true;
   system.stateVersion = "24.11";
 
 }
