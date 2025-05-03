@@ -24,6 +24,10 @@
       source = ./dotfiles/hyprkeys.conf;
       force  = true;
     };
+    "kitty/kitty.conf" = {
+      source = ./dotfiles/kitty.conf;
+      force  = true;
+    };
   };
 
   imports = [
