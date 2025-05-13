@@ -64,6 +64,7 @@
               ./modules/programs.nix
               ./modules/utilities.nix
               ./modules/vscode.nix
+              ./modules/cider.nix
             ];
           };
         };

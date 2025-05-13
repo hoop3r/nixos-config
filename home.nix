@@ -36,5 +36,6 @@
     ./modules/git.nix
     ./modules/hyprland.nix
     ./modules/vscode.nix
+    ./modules/cider.nix
   ];
 }
