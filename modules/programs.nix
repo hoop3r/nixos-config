@@ -41,13 +41,13 @@
     prismlauncher
     steam
     gimp
-    cider
     drawio
     slack
     wireshark
     ghidra
     burpsuite
     postman
+    cider-2
   ];
 
 }

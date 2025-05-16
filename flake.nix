@@ -1,5 +1,5 @@
 {
-  description = "My Home Manager configuration";
+  description = "my flake and whatnot";
 
   inputs = {
 
@@ -42,16 +42,6 @@
       
     in
       {
-        
-        # devShells.x86_64-linux.default = pkgs.mkShell {
-        #   buildInputs = [
-        #     (python.withPackages (p: [ p.requests p.pygobject3 ]))
-        #   ];
-
-        #   shellHook = ''
-        #     export GI_TYPELIB_PATH=${pkgs.gtk3}/lib/girepository-1.0:${pkgs.playerctl.override { introspection = true; }}/lib/girepository-1.0
-        #   '';
-        # };
 
         homeConfigurations = {
           thinkpad = home-manager.lib.homeManagerConfiguration {
@@ -64,7 +54,6 @@
               ./modules/programs.nix
               ./modules/utilities.nix
               ./modules/vscode.nix
-              ./modules/cider.nix
             ];
           };
         };

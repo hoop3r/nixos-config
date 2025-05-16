@@ -23,6 +23,8 @@
     autopsy
     imhex
     powershell
+    blueman
+    pavucontrol
     ];
 }
 
