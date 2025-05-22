@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { system = builtins.currentSystem; }
-  , appimageTools ? pkgs.appimageTools
-  , lib ? pkgs.lib
-  , fetchurl ? pkgs.fetchurl
+, appimageTools ? pkgs.appimageTools
+, lib ? pkgs.lib
+, fetchurl ? pkgs.fetchurl
 }:
 
 appimageTools.wrapType2 rec {
@@ -16,18 +16,27 @@ appimageTools.wrapType2 rec {
   extraInstallCommands =
     let contents = appimageTools.extract { inherit pname version src; };
     in ''
-      mv $out/bin/${pname}-${version} $out/bin/${pname}
-
-      install -m 444 -D ${contents}/${pname}.desktop -t $out/share/applications
-      substituteInPlace $out/share/applications/${pname}.desktop \
+      install -m 444 -D ${contents}/*.desktop -t $out/share/applications
+      substituteInPlace $out/share/applications/*.desktop \
         --replace 'Exec=AppRun' 'Exec=${pname}'
       cp -r ${contents}/usr/share/icons $out/share
     '';
 
+  extraWrapperArgs = [
+    "--set ELECTRON_DISABLE_SANDBOX 1"
+    "--set CIDER_DISABLE_SANDBOX 1"
+    "--add-flags --no-sandbox"
+    "--add-flags --disable-gpu"
+    "--add-flags --disable-software-rasterizer"
+    "--add-flags --disable-gpu-compositing"
+    "--add-flags --use-gl=swiftshader"
+    "--add-flags --ozone-platform=x11"
+    "--add-flags --ozone-platform=wayland"
+  ];
+
   meta = with lib; {
     description = "A new look into listening and enjoying Apple Music in style and performance.";
     homepage = "https://cider.sh/";
-    maintainers = [ maintainers.nicolaivds ];
     platforms = [ "x86_64-linux" ];
   };
 }

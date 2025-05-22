@@ -47,7 +47,7 @@
     ghidra
     burpsuite
     postman
-    cider-2
+    plex-desktop
   ];
 
 }
