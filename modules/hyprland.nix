@@ -13,7 +13,8 @@
     pamixer
     light
     brillo
-    nerdfonts
+    nerd-fonts.jetbrains-mono
+    font-awesome
     hyprshot
     playerctl
     brightnessctl

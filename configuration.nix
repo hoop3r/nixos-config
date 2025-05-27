@@ -16,12 +16,6 @@
 
   networking.networkmanager.enable = true;
   
-  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
- 
-  services.xserver.displayManager.sessionCommands = ''
-    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
-  '';
-  
   services.openvpn.servers = {
     officeVPN  = {
       config = '' config /home/hoop3r/Lab/HoopHQ/vpn-config/OpenVPN-Config.ovpn '';
@@ -42,7 +36,6 @@
   xdg.portal.xdgOpenUsePortal = true;
   xdg.portal.extraPortals = [
     pkgs.xdg-desktop-portal-gnome
-    pkgs.xdg-desktop-portal-hyprland
     pkgs.xdg-desktop-portal-gtk
   ];
 
@@ -53,7 +46,7 @@
   
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -123,6 +116,6 @@
 
   services.thermald.enable = lib.mkDefault true;
   services.fprintd.enable = true;
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
 }

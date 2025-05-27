@@ -5,7 +5,7 @@
 
   home.username      = "hoop3r";
   home.homeDirectory = "/home/hoop3r";
-  home.stateVersion  = "24.11";
+  home.stateVersion  = "25.05";
 
   home.file.".zshrc".source = ./dotfiles/.zshrc;
 
@@ -27,6 +27,11 @@
     "kitty/kitty.conf" = {
       source = ./dotfiles/kitty.conf;
       force  = true;
+    };
+    "waybar" = {
+      source = ./dotfiles/waybar;
+      force  = true;
+      recursive = true;
     };
   };
 

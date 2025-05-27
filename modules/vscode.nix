@@ -19,19 +19,12 @@ let
 
   deps = ps: with ps; [
     (python.withPackages (p: [
-       p.requests 
-       p.picozero 
-       p.typing-extensions 
-       p.adafruit-circuitpython-typing 
-       p.Adafruit-PureIO 
-       p.adafruit-circuitpython-busdevice 
-       p.adafruit-circuitpython-requests 
-       p.adafruit-circuitpython-sht31d 
-       p.Adafruit-Blinka 
-       p.Adafruit-PlatformDetect 
+       p.numpy
        p.matplotlib
       ]))
-
+    R
+    rPackages.IRkernel
+    rPackages.RWeka
     zlib
     openssl.dev
     pkg-config

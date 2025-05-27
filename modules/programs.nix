@@ -5,7 +5,7 @@
     firefox = {
       enable = true;
       profiles.hoop3r = {
-        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
           ublock-origin
         ];
       };
@@ -17,7 +17,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
     
-      initExtra = ''
+      initContent = ''
         autoload -Uz promptinit
         promptinit
         prompt suse
@@ -46,7 +46,7 @@
     wireshark
     ghidra
     burpsuite
-    postman
+#    postman
     plex-desktop
   ];
 
