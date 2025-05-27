@@ -23,7 +23,7 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, hyprland, ... }@inputs:
     let 
       system = "x86_64-linux";
       pkgs = import nixpkgs { 
@@ -49,7 +49,6 @@
             extraSpecialArgs = { inherit inputs; };
             modules = [ 
               ./home.nix 
-              ./modules/hyprland.nix
               ./modules/git.nix
               ./modules/programs.nix
               ./modules/utilities.nix
@@ -63,6 +62,8 @@
             inherit system pkgs;
             modules = [ 
               ./configuration.nix
+              ./modules/hyprland.nix
+              ./modules/gnome.nix
             ];
           };
         };
