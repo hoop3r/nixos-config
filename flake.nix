@@ -53,6 +53,7 @@
               ./modules/programs.nix
               ./modules/utilities.nix
               ./modules/vscode.nix
+              ./modules/hyprland.nix
             ];
           };
         };
@@ -62,8 +63,8 @@
             inherit system pkgs;
             modules = [ 
               ./configuration.nix
-              ./modules/hyprland.nix
-              ./modules/gnome.nix
+              ./modules/specialisations.nix
+
             ];
           };
         };
