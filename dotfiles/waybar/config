@@ -80,7 +80,7 @@
         "on-click": ""
     },
     "network": {
-        "format-wifi": " {signalStrength}%",
+        "format-wifi": "  {signalStrength}%",
         "format-ethernet": " wired",
         "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh",
         "format-disconnected": "Disconnected  "
@@ -89,7 +89,7 @@
         "format": "{icon} {volume}%",
         "format-bluetooth": "  {volume}%",
         "format-bluetooth-muted": " ",
-        "format-muted": "",
+        "format-muted": " ",
         "format-icons": {
             "headphone": "",
             "hands-free": "",

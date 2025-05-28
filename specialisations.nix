@@ -6,6 +6,8 @@
       services.xserver.desktopManager.gnome.enable = false;
       programs.hyprland.enable = true;
       programs.hyprland.xwayland.enable = true;
+      hardware.bluetooth.enable = true;
+      hardware.bluetooth.powerOnBoot = true;
     };
   };
   specialisation.gnome = {

@@ -63,7 +63,7 @@
             inherit system pkgs;
             modules = [ 
               ./configuration.nix
-              ./modules/specialisations.nix
+              ./specialisations.nix
 
             ];
           };
