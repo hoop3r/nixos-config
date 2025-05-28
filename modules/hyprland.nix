@@ -21,5 +21,6 @@
     wl-clipboard
     asciiquarium
     lavat
+    bluez
   ];
 }
