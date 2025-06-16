@@ -5,7 +5,7 @@ dir="~/.config/waybar/scripts/power-menu/"
 theme='style'
 
 # CMDs
-uptime="$(uptime -p | sed -e 's/up //g')"
+uptime="$(uptime | sed -E 's/.*up[[:space:]]+([^,]+),.*/\1/')"
 host=$(cat /etc/hostname)
 
 # Options

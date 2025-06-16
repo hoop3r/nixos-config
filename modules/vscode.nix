@@ -23,6 +23,7 @@ let
        p.matplotlib
       ]))
     R
+    go
     rPackages.IRkernel
     rPackages.RWeka
     zlib

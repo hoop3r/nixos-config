@@ -21,7 +21,7 @@
         "backlight",
         "pulseaudio",
         "network",
-	"bluetooth",
+	    "bluetooth",
         "battery",
         "clock",
         "custom/power-menu"
@@ -30,14 +30,14 @@
         "format": "{icon}",
         "on-click": "activate",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "active": "",
-            "default": ""
+            "1": " ",
+            "2": " ",
+            "3": " ",
+            "4": " ",
+            "5": " ",
+            "urgent": " ",
+            "active": " ",
+            "default": " "
         }
     },
     "hyprland/window": {
@@ -88,7 +88,7 @@
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-bluetooth": "  {volume}%",
-        "format-bluetooth-muted": " ",
+        "format-bluetooth-muted": "  ",
         "format-muted": " ",
         "format-icons": {
             "headphone": "",
@@ -141,7 +141,7 @@
     },
     "custom/spotify": {
         "exec": "/home/hoop3r/.config/waybar/scripts/mediaplayer.py",
-        "format": "{}",
+        "format": " {} ",
         "return-type": "json",
         "on-click": "playerctl play-pause",
         "on-double-click-right": "playerctl next",

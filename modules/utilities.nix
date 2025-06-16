@@ -25,6 +25,8 @@
     powershell
     blueman
     pavucontrol
+    go
+    virt-manager
     ];
 }
 
