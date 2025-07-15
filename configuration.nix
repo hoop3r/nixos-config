@@ -75,8 +75,8 @@
     openvpn
     docker
     protonup
-    nh
     gparted
+    hyprland
   ];
   
   environment.sessionVariables = {

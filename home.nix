@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -6,9 +6,7 @@
   home.username      = "hoop3r";
   home.homeDirectory = "/home/hoop3r";
   home.stateVersion  = "25.05";
-
-  home.file.".zshrc".source = ./dotfiles/.zshrc;
-
+  
   xdg.enable = true; 
 
   xdg.configFile = {
@@ -41,4 +39,49 @@
     ./modules/git.nix
     ./modules/vscode.nix
   ];
+
+  programs.zsh = {
+    enable = true;
+
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    enableCompletion = true;
+    historySubstringSearch.enable = true;
+
+    #shellAliases = {};
+
+    history = {
+      size = 10000;
+      save = 10000;
+      path = "${config.home.homeDirectory}/.zsh_history";
+      ignoreDups = true;
+      share = true;
+      ignoreSpace = true;
+    };
+
+    initExtra = ''
+      autoload -Uz promptinit
+      promptinit
+      prompt suse
+
+      RPROMPT='%F{green}[%*]%f'
+
+      bindkey '^[[1;5C' forward-word
+      bindkey '^[[1;5D' backward-word
+      bindkey '^H' backward-delete-word
+
+      if command -v fzf >/dev/null; then
+        fzf-history-widget() {
+          local selected
+          selected=$(fc -rl 1 | fzf --tac +s --tiebreak=index --ansi --no-sort | sed 's/^[[:space:]]*[0-9]*[[:space:]]*//')
+          if [[ -n $selected ]]; then
+            LBUFFER=$selected
+          fi
+        }
+        zle -N fzf-history-widget
+        bindkey '^R' fzf-history-widget
+      fi
+    '';
+  };
+
 }
