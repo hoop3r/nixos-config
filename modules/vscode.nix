@@ -23,6 +23,7 @@ let
        p.matplotlib
       ]))
     R
+    powershell
     go
     rPackages.IRkernel
     rPackages.RWeka

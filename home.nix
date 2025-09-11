@@ -59,7 +59,7 @@
       ignoreSpace = true;
     };
 
-    initExtra = ''
+    initContent = ''
       autoload -Uz promptinit
       promptinit
       prompt suse
@@ -69,6 +69,8 @@
       bindkey '^[[1;5C' forward-word
       bindkey '^[[1;5D' backward-word
       bindkey '^H' backward-delete-word
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
 
       if command -v fzf >/dev/null; then
         fzf-history-widget() {

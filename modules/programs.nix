@@ -30,7 +30,6 @@
     wireshark
     ghidra
     burpsuite
-#    postman
     plex-desktop
   ];
 
