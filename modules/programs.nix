@@ -31,6 +31,7 @@
     ghidra
     burpsuite
     plex-desktop
+    spotify
   ];
 
 }
