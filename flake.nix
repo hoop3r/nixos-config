@@ -45,18 +45,6 @@
     in
       {
 
-        packages = {
-          "x86_64-linux" = rec {
-            default = cider;
-
-            cider = pkgs.appimageTools.wrapType2 rec {
-              pname = "cider";
-              version = "2.6.1";
-              src = "./pkgs/cider/cider-linux-x64.AppImage";
-            };
-          };
-        };
-
         homeConfigurations = {
           thinkpad = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
