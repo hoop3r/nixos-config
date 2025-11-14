@@ -19,21 +19,20 @@
       programs.hyprland.enable = false;
       services.xserver.displayManager.sddm.enable = false;
       services.xserver.desktopManager.plasma6.enable = false;
-
     };
 
   };
-  specialisation.kde = {
-    inheritParentConfig = true;
-    configuration = {
-      services.xserver.displayManager.gdm.enable = pkgs.lib.mkForce false;
-      services.xserver.displayManager.sddm.enable = pkgs.lib.mkForce true;
+  # specialisation.kde = {
+  #   inheritParentConfig = true;
+  #   configuration = {
+  #     services.xserver.displayManager.gdm.enable = pkgs.lib.mkForce false;
+  #     services.xserver.displayManager.sddm.enable = pkgs.lib.mkForce true;
 
-      programs.hyprland.enable = false;
-      services.xserver.desktopManager.gnome.enable = false;
-      services.xserver.desktopManager.plasma6.enable = true;
-      services.xserver.displayManager.defaultSession = "plasma";
-    };
-  };
+  #     programs.hyprland.enable = false;
+  #     services.xserver.desktopManager.gnome.enable = false;
+  #     services.xserver.desktopManager.plasma6.enable = true;
+  #     services.xserver.displayManager.defaultSession = "plasma";
+  #   };
+  # };
 }
 
