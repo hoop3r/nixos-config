@@ -334,6 +334,11 @@ self: super: {
     nativeBuildInputs = [];
     propagatedBuildInputs = [];
   };
+
+  fs = super.fs.overrideAttrs (old: {
+    doCheck = false;
+  });
+
 }
 
 

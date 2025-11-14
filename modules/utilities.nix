@@ -18,15 +18,15 @@
     vagrant
     git-graph
     minicom
-    clamav
     binwalk
-    autopsy
+    #autopsy
     imhex
     powershell
     blueman
     pavucontrol
     go
     virt-manager
+    yazi
     ];
 }
 

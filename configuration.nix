@@ -77,6 +77,7 @@
     protonup
     gparted
     hyprland
+    clamav
   ];
   
   environment.sessionVariables = {
@@ -102,6 +103,9 @@
   };
 
   security.pam.services.hyprlock = {};
+
+  services.clamav.daemon.enable = true;
+  services.clamav.updater.enable = true;
 
   services.thermald.enable = lib.mkDefault true;
   services.fprintd.enable = true;

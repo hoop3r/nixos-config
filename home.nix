@@ -48,8 +48,6 @@
     enableCompletion = true;
     historySubstringSearch.enable = true;
 
-    #shellAliases = {};
-
     history = {
       size = 10000;
       save = 10000;
