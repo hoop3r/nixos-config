@@ -1,14 +1,15 @@
 { pkgs, ... }:
 
 let
-
   dotnet_sdk = pkgs.dotnetCorePackages.dotnet_8.sdk;
   dotnet_runtime = pkgs.dotnetCorePackages.dotnet_8.runtime;
   dotnet_aspnetcore = pkgs.dotnetCorePackages.dotnet_8.aspnetcore;
 
   packageOverrides = pkgs.callPackage ../python-packages.nix {};
-  python = pkgs.python3.override { 
-    inherit packageOverrides; 
+  python = pkgs.python3.override {
+    packageOverrides = packageOverrides // {
+      fs = pkgs.python3Packages.fs.overrideAttrs (old: { doCheck = false; });
+    };
   };
 
   dotnet-full = with pkgs.dotnetCorePackages; combinePackages [
@@ -18,10 +19,10 @@ let
   ];
 
   deps = ps: with ps; [
-    (python.withPackages (p: [
-       p.numpy
-       p.matplotlib
-      ]))
+    # (python.withPackages (p: [
+    #   p.numpy
+    #   p.matplotlib
+    # ]))
     R
     powershell
     go
@@ -35,24 +36,22 @@ let
     mono
     dotnet-ef
   ] ++ [ dotnet-full ];
+
 in
 {
+  programs.vscode = {
+    enable = true;
 
- programs.vscode = {
-  enable = true;
-  
-  package =
-    (pkgs.vscode.overrideAttrs (prevAttrs: {
-      nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ pkgs.makeWrapper ];
-      postFixup =
-        prevAttrs.postFixup
-        + ''
-          wrapProgram $out/bin/code \
-            --set DOTNET_ROOT "${dotnet_sdk}/share/dotnet" \
-            --prefix PATH : "${dotnet_sdk}/share/dotnet/tools"
-        '';
-    })).fhsWithPackages
-      (ps: deps ps);
+    package =
+      (pkgs.vscode.overrideAttrs (prevAttrs: {
+        nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ pkgs.makeWrapper ];
+        postFixup =
+          prevAttrs.postFixup
+          + ''
+            wrapProgram $out/bin/code \
+              --set DOTNET_ROOT "${dotnet_sdk}/share/dotnet" \
+              --prefix PATH : "${dotnet_sdk}/share/dotnet/tools"
+          '';
+      })).fhsWithPackages (ps: deps ps);
   };
-
 }

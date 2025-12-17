@@ -7,7 +7,9 @@
       ./hardware-configuration.nix
     ];
     
-
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -27,7 +29,12 @@
   time.timeZone = "America/New_York";
 
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+#  services.xserver.displayManager.gdm.enable = true;
+#  services.xserver.desktopManager.gnome.enable = true;
 
   xdg.portal.enable = true;
   xdg.portal.xdgOpenUsePortal = true;
@@ -74,7 +81,7 @@
     nano
     openvpn
     docker
-    protonup
+    protonup-ng
     gparted
     hyprland
     clamav
@@ -85,21 +92,8 @@
     NIXOS_OZONE_WL = "1";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
       "\${HOME}/.steam/root/compatibilitytools.d";
-    FLAKE = "/home/.config/nixos-config";
+    FLAKE = "/home/hoop3r/nixos-config";
 
-  };
-
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [ pkgs.OVMFFull.fd ];
-      };
-    };
   };
 
   security.pam.services.hyprlock = {};
@@ -109,6 +103,7 @@
 
   services.thermald.enable = lib.mkDefault true;
   services.fprintd.enable = true;
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
+
 
 }
