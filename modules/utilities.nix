@@ -27,6 +27,7 @@
     go
     virt-manager
     yazi
+    rockbox-utility
     ];
 }
 

@@ -57,7 +57,7 @@
   users.users.hoop3r = {
     isNormalUser = true;
     description = "Nicholas Hooper";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" "wireshark"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirt" "dialout" "wireshark"];
     shell = pkgs.zsh;
   };
   
@@ -73,7 +73,9 @@
   programs.nix-ld.enable = true;
 
   virtualisation.docker.enable = true;
-  
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.package = pkgs.libvirt;
+
   environment.systemPackages = with pkgs; [
     home-manager
     git    
