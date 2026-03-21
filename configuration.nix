@@ -75,7 +75,9 @@
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.package = pkgs.libvirt;
-
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "hoop3r" ];
+  
   environment.systemPackages = with pkgs; [
     home-manager
     git    
@@ -97,6 +99,8 @@
     FLAKE = "/home/hoop3r/nixos-config";
 
   };
+
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   security.pam.services.hyprlock = {};
 
