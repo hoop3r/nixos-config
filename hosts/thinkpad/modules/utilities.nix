@@ -28,6 +28,7 @@
     virt-manager
     yazi
     rockbox-utility
+    btop
     ];
 }
 

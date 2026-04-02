@@ -19,10 +19,6 @@ let
   ];
 
   deps = ps: with ps; [
-    # (python.withPackages (p: [
-    #   p.numpy
-    #   p.matplotlib
-    # ]))
     R
     powershell
     go

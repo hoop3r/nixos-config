@@ -28,22 +28,14 @@
   
   time.timeZone = "America/New_York";
 
-#  services.xserver.enable = true;
-#  services.displayManager.sddm.enable = true;
-#  services.displayManager.sddm.wayland.enable = true;
-#  services.desktopManager.plasma6.enable = true;
-
-#  services.xserver.displayManager.gdm.enable = true;
-#  services.xserver.desktopManager.gnome.enable = true;
-
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = "*";
   };
+  
   services.printing.enable = true;
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {

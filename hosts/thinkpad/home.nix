@@ -5,7 +5,7 @@
 
   home.username      = "hoop3r";
   home.homeDirectory = "/home/hoop3r";
-  home.stateVersion  = "25.05";
+  home.stateVersion  = "25.11";
   
   xdg.enable = true; 
 
