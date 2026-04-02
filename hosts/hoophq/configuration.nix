@@ -75,9 +75,6 @@
     storage = "persistent";
   };
 
-
-  sops = {defaultSopsFile = ./secrets.yaml;};
-
   system.stateVersion = "25.11";
 
 }

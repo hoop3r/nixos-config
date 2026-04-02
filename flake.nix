@@ -27,10 +27,10 @@
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
-    }
+    };
     unstable = {
       url = "nixpkgs/nixos-unstable";
-    } 
+    }; 
 
   };
 
@@ -87,7 +87,6 @@
             modules = [ 
               ./hosts/thinkpad/configuration.nix
               ./hosts/thinkpad/hardware-configuration.nix
-              ./hosts/thinkpad/home.nix
               ./hosts/thinkpad/specialisations.nix
             ];
           };
