@@ -140,7 +140,7 @@
         "on-click": "xdg-open https://weather.com/weather/today/l/e8302dd5e02091eb1972a2d77d7c7e4caf15cf0cb8bdbeede41fa87dec408b21"
     },
     "custom/spotify": {
-        "exec": "/home/hoop3r/.config/waybar/scripts/mediaplayer.py",
+        "exec": "mediaplayer",
         "format": " {} ",
         "return-type": "json",
         "on-click": "playerctl play-pause",

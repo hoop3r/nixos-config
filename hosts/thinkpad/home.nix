@@ -1,5 +1,14 @@
 { lib, pkgs, config, ... }:
 
+let
+  mediaplayer = pkgs.writeShellScriptBin "mediaplayer" ''
+    export GI_TYPELIB_PATH="${pkgs.playerctl}/lib/girepository-1.0:${pkgs.glib}/lib/girepository-1.0:$GI_TYPELIB_PATH"
+    export LD_LIBRARY_PATH="${pkgs.playerctl}/lib:${pkgs.glib}/lib:$LD_LIBRARY_PATH"
+    exec ${pkgs.python3.withPackages (ps: [ ps.pygobject3 ])}/bin/python3 \
+      ${./dotfiles/waybar/scripts/mediaplayer.py}
+  '';
+in
+
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -9,20 +18,21 @@
   home.sessionVariables = {
     FLAKE = "${config.home.homeDirectory}/nixos-config";
   };  
+  home.packages = [ mediaplayer ];
   
   xdg.enable = true; 
 
   xdg.configFile = {
     "hypr/hyprlock.conf" = {
-      source = ./dotfiles/hyprlock.conf;
+      source = ./dotfiles/hypr/hyprlock.conf;
       force  = true;
     };
     "hypr/hyprland.conf" = {
-      source = ./dotfiles/hyprland.conf;
+      source = ./dotfiles/hypr/hyprland.conf;
       force  = true;
     };
     "hypr/keybindings.conf" = {
-      source = ./dotfiles/hyprkeys.conf;
+      source = ./dotfiles/hypr/hyprkeys.conf;
       force  = true;
     };
     "kitty/kitty.conf" = {
@@ -35,7 +45,7 @@
       recursive = true;
     }; 
     "hypr/wallpapers" = {
-      source = ./dotfiles/wallpapers;
+      source = ./dotfiles/hypr/wallpapers;
       force  = true;
       recursive = true;
     };
