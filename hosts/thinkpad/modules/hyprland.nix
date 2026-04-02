@@ -24,5 +24,6 @@
     bluez
     rofi-emoji 
     fcitx5
+    catppuccin-cursors.frappeDark
   ];
 }

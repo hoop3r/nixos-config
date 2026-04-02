@@ -25,6 +25,10 @@
       updateResolvConf = true;
     };
   };
+
+  services.udev.extraRules = ''
+    KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="ELAN0672:00 04F3:3187 Touchpad", ENV{LIBINPUT_FUZZ_36}="0"
+  '';
   
   time.timeZone = "America/New_York";
 

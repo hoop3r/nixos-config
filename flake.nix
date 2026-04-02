@@ -96,12 +96,12 @@
             modules = [ 
               ./hosts/hoophq/configuration.nix
               ./hosts/hoophq/hardware-configuration.nix
-              # ./hosts/hoophq/services/containers.nix
-              # ./hosts/hoophq/services/minecraft.nix
-              # ./hosts/hoophq/services/webserver.nix
-              # ./hosts/hoophq/secrets/sops.nix
-              # sops-nix.nixosModules.sops
-              # nix-minecraft.nixosModules.minecraft-servers
+              ./hosts/hoophq/services/containers.nix
+              ./hosts/hoophq/services/minecraft.nix
+              ./hosts/hoophq/services/webserver.nix
+              ./hosts/hoophq/secrets/sops.nix
+              sops-nix.nixosModules.sops
+              nix-minecraft.nixosModules.minecraft-servers
             ];
           };
         };

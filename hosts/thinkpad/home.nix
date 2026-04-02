@@ -17,6 +17,7 @@ in
   home.stateVersion  = "25.11";
   home.sessionVariables = {
     FLAKE = "${config.home.homeDirectory}/nixos-config";
+    HYPRSHOT_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
   };  
   home.packages = [ mediaplayer ];
   

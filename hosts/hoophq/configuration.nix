@@ -21,19 +21,18 @@
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
-
-
-  services = {
-    xserver.xkb = {
-    layout = "us";
-    variant = "";
+  
+  systemd.timers."podman-auto-update" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
     };
-    displayManager = {
-      autoLogin = {
-        enable = true;
-        user = "bugbyte";
-      };
-    };
+  };
+
+  services.podman.autoPrune = {
+    enable = true;
+    dates = "daily";
   };
 
   systemd.sleep.extraConfig = ''
