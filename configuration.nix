@@ -28,21 +28,20 @@
   
   time.timeZone = "America/New_York";
 
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+#  services.xserver.enable = true;
+#  services.displayManager.sddm.enable = true;
+#  services.displayManager.sddm.wayland.enable = true;
+#  services.desktopManager.plasma6.enable = true;
 
 #  services.xserver.displayManager.gdm.enable = true;
 #  services.xserver.desktopManager.gnome.enable = true;
 
-  xdg.portal.enable = true;
-  xdg.portal.xdgOpenUsePortal = true;
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gnome
-    pkgs.xdg-desktop-portal-gtk
-  ];
-  
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
   services.printing.enable = true;
 
   services.pulseaudio.enable = false;
@@ -71,6 +70,7 @@
   };
 
   programs.nix-ld.enable = true;
+  programs.direnv.enable = true;
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;

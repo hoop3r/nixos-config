@@ -63,6 +63,7 @@
         nixosConfigurations = {
           thinkpad = lib.nixosSystem {
             inherit system pkgs;
+            specialArgs = { inherit inputs; };
             modules = [ 
               ./configuration.nix
               ./specialisations.nix
