@@ -62,7 +62,6 @@
   };
 
   programs.nix-ld.enable = true;
-  programs.direnv.enable = true;
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
@@ -88,8 +87,6 @@
     NIXOS_OZONE_WL = "1";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
       "\${HOME}/.steam/root/compatibilitytools.d";
-    FLAKE = "/home/hoop3r/nixos-config";
-
   };
 
   virtualisation.virtualbox.host.enableExtensionPack = true;

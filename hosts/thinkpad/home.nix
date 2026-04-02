@@ -6,6 +6,9 @@
   home.username      = "hoop3r";
   home.homeDirectory = "/home/hoop3r";
   home.stateVersion  = "25.11";
+  home.sessionVariables = {
+    FLAKE = "${config.home.homeDirectory}/nixos-config";
+  };  
   
   xdg.enable = true; 
 
@@ -30,6 +33,16 @@
       source = ./dotfiles/waybar;
       force  = true;
       recursive = true;
+    }; 
+    "hypr/wallpapers" = {
+      source = ./dotfiles/wallpapers;
+      force  = true;
+      recursive = true;
+    };
+    "hypr/scripts" = {
+      source = ./dotfiles/hypr/scripts;
+      force  = true;
+      recursive = true;
     };
   };
 
@@ -39,6 +52,11 @@
     ./modules/git.nix
     ./modules/vscode.nix
   ];
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   programs.zsh = {
     enable = true;

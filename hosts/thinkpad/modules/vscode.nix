@@ -5,12 +5,12 @@ let
   dotnet_runtime = pkgs.dotnetCorePackages.dotnet_8.runtime;
   dotnet_aspnetcore = pkgs.dotnetCorePackages.dotnet_8.aspnetcore;
 
-  packageOverrides = pkgs.callPackage ../python-packages.nix {};
-  python = pkgs.python3.override {
-    packageOverrides = packageOverrides // {
-      fs = pkgs.python3Packages.fs.overrideAttrs (old: { doCheck = false; });
-    };
-  };
+#  packageOverrides = pkgs.callPackage ../python-packages.nix {};
+#  python = pkgs.python3.override {
+#    packageOverrides = packageOverrides // {
+#      fs = pkgs.python3Packages.fs.overrideAttrs (old: { doCheck = false; });
+#    };
+#  };
 
   dotnet-full = with pkgs.dotnetCorePackages; combinePackages [
     dotnet_sdk

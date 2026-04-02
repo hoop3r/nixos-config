@@ -22,5 +22,7 @@
     asciiquarium
     lavat
     bluez
+    rofi-emoji 
+    fcitx5
   ];
 }
