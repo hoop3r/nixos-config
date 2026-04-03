@@ -15,7 +15,7 @@
     networkmanager.unmanaged = [ "type:802-11-wireless" ];
     hostName = "hoophq";
     firewall = {
-      allowedTCPPorts = [22 80 443 25565];
+      allowedTCPPorts = [22 80 443 8123 25565];
     };
   };
 
@@ -52,7 +52,6 @@
      podman-compose
      btop
      cloudflared
-     podman
   ];
 
   services.clamav.daemon.enable = true;
