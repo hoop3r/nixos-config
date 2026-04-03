@@ -32,9 +32,14 @@
       url = "nixpkgs/nixos-unstable";
     }; 
 
+    hoophq-services = {
+      url = "git+ssh://git@github.com/hoop3r/hoophq-services.git";
+#      rev = "4743b4b";
+    };
+
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, nix-minecraft, sops-nix, unstable, ... }@inputs:
+  outputs = { nixpkgs, home-manager, hyprland, nix-minecraft, sops-nix, unstable, hoophq-services, ... }@inputs:
     let 
       system = "x86_64-linux";
 
@@ -96,9 +101,9 @@
             modules = [ 
               ./hosts/hoophq/configuration.nix
               ./hosts/hoophq/hardware-configuration.nix
-              ./hosts/hoophq/services/containers.nix
-              ./hosts/hoophq/services/minecraft.nix
-              ./hosts/hoophq/services/webserver.nix
+              hoophq-services.nixosModules.containers
+              hoophq-services.nixosModules.minecraft
+              hoophq-services.nixosModules.webserver
               ./hosts/hoophq/secrets/sops.nix
               sops-nix.nixosModules.sops
               nix-minecraft.nixosModules.minecraft-servers

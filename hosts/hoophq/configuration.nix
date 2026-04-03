@@ -22,19 +22,6 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   
-  systemd.timers."podman-auto-update" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
-    };
-  };
-
-  services.podman.autoPrune = {
-    enable = true;
-    dates = "daily";
-  };
-
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
     AllowHibernation=no
@@ -65,6 +52,7 @@
      podman-compose
      btop
      cloudflared
+     podman
   ];
 
   services.clamav.daemon.enable = true;
