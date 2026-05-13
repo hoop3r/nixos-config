@@ -1,6 +1,5 @@
 { lib, pkgs, config, ... }:
 {
-  nixpkgs.config.allowUnfree = true;
 
   home.username      = "hoop3r";
   home.homeDirectory = "/Users/hoop3r";
@@ -68,7 +67,6 @@
   };
 
   home.packages = with pkgs; [
-    # utilities matching thinkpad
     tmux
     unzip
     ripgrep
@@ -81,9 +79,8 @@
     btop
     yazi
     go
-
-    # mac specific
-    rectangle     # window manager
+    rectangle
     iterm2
+    kitty
   ];
 }
