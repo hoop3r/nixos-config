@@ -83,11 +83,20 @@
     in
       {
        darwinConfigurations = {
-          mcpro = nix-darwin.lib.darwinSystem {
-            system = darwinSystem;
-            modules = [ ./hosts/mcpro/configuration.nix ];
-            specialArgs = { inherit inputs darwinPkgs; };
-          };
+        mcpro = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/mcpro/configuration.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.hoop3r = import ./hosts/mcpro/home.nix;
+            }
+          ];
+        };
         };
 
         homeConfigurations = {

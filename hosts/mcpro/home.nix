@@ -1,36 +1,20 @@
 { lib, pkgs, config, ... }:
-
 {
   nixpkgs.config.allowUnfree = true;
 
-  home.username = "hoop3r";
-  home.homeDirectory = "/home/hoop3r";
+  home.username      = "hoop3r";
+  home.homeDirectory = "/Users/hoop3r";
   home.stateVersion  = "25.11";
+
   home.sessionVariables = {
     FLAKE = "${config.home.homeDirectory}/nixos-config";
-  };  
-  
-  xdg.enable = true; 
-
-  xdg.configFile = {
-    "kitty/kitty.conf" = {
-      source = ./dotfiles/kitty.conf;
-      force  = true;
-    };
   };
 
-  imports = [
-    ./utilities.nix
-  ];
-
-  programs.git = {
-    enable = true;
-    settings.user.name = "hoop3r";
-    settings.user.email = "nhoop2107@gmail.com";
-  };
+  xdg.enable = true;
 
   programs.zsh = {
     enable = true;
+
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
@@ -72,4 +56,34 @@
     '';
   };
 
+  programs.git = {
+    enable = true;
+    settings.user.name = "hoop3r";
+    settings.user.email = "nhoop2107@gmail.com";
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  home.packages = with pkgs; [
+    # utilities matching thinkpad
+    tmux
+    unzip
+    ripgrep
+    fd
+    fzf
+    bat
+    htop
+    neovim
+    fastfetch
+    btop
+    yazi
+    go
+
+    # mac specific
+    rectangle     # window manager
+    iterm2
+  ];
 }
