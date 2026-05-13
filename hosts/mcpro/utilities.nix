@@ -1,0 +1,28 @@
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    tmux
+    unzip
+    ripgrep
+    fd
+    fzf
+    bat
+    htop
+    neovim
+    fastfetch
+    compose2nix
+    nettools
+    gcc
+    icu
+    docker-compose
+    vagrant
+    git-graph
+    binwalk
+    imhex
+    powershell
+    virt-manager
+    yazi
+    rockbox-utility
+    btop
+    ];
+}

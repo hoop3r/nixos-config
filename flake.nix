@@ -36,15 +36,28 @@
       url = "git+ssh://git@github.com/hoop3r/hoophq-services.git";
 #      rev = "4743b4b";
     };
+  
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, nix-minecraft, sops-nix, unstable, hoophq-services, ... }@inputs:
+  outputs = { nixpkgs, home-manager, hyprland, nix-minecraft, sops-nix, unstable, hoophq-services, nix-darwin, ... }@inputs:
     let 
       system = "x86_64-linux";
+      darwinSystem = "aarch64-darwin";
 
       unstablePkgs = import unstable {
         inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+
+      darwinPkgs = import nixpkgs {
+        system = darwinSystem;
         config = {
           allowUnfree = true;
         };
@@ -61,7 +74,7 @@
             papermcServers = unstablePkgs.papermcServers;
           })
         ];
-      };
+      };  
 	
       pkgslegacy = nixpkgs.legacyPackages.x86_64-linux;
 
@@ -69,6 +82,13 @@
       
     in
       {
+       darwinConfigurations = {
+          mcpro = nix-darwin.lib.darwinSystem {
+            system = darwinSystem;
+            modules = [ ./hosts/mcpro/configuration.nix ];
+            specialArgs = { inherit inputs darwinPkgs; };
+          };
+        };
 
         homeConfigurations = {
           thinkpad = home-manager.lib.homeManagerConfiguration {
@@ -83,8 +103,15 @@
               ./hosts/thinkpad/modules/vscode.nix
             ];
           };
+          mcpro = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = { inherit inputs; };
+            modules = [ 
+              ./hosts/mcpro/home.nix
+              ./hosts/mcpro/utilities.nix
+            ];
+          };
         };
-
         nixosConfigurations = {
           thinkpad = lib.nixosSystem {
             inherit system pkgs;
