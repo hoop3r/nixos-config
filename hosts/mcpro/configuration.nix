@@ -1,11 +1,14 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, ... }:
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "mcpro";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.optimise.automatic = true;
 
   users.users.hoop3r = {
@@ -15,8 +18,8 @@
   };
 
   environment.systemPath = [
-  "/run/current-system/sw/bin"
-  "/nix/var/nix/profiles/default/bin"
+    "/run/current-system/sw/bin"
+    "/nix/var/nix/profiles/default/bin"
   ];
 
   programs.zsh.enable = true;

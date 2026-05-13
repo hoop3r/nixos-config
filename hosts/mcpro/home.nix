@@ -1,15 +1,26 @@
-{ lib, pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
 
-  home.username      = "hoop3r";
+  home.username = "hoop3r";
   home.homeDirectory = "/Users/hoop3r";
-  home.stateVersion  = "25.11";
+  home.stateVersion = "25.11";
 
   home.sessionVariables = {
     FLAKE = "${config.home.homeDirectory}/nixos-config";
   };
 
   xdg.enable = true;
+
+  xdg.configFile = {
+    "kitty/kitty.conf" = {
+      source = ../thinkpad/dotfiles/kitty.conf;
+      force = true;
+    };
+  };
 
   programs.zsh = {
     enable = true;
@@ -80,7 +91,8 @@
     yazi
     go
     rectangle
-    iterm2
     kitty
+    nixd
+    nixfmt
   ];
 }

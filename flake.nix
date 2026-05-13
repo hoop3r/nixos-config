@@ -22,7 +22,7 @@
     };
 
     nix-minecraft = {
-      url  = "github:Infinidoge/nix-minecraft";
+      url = "github:Infinidoge/nix-minecraft";
     };
 
     sops-nix = {
@@ -30,13 +30,13 @@
     };
     unstable = {
       url = "nixpkgs/nixos-unstable";
-    }; 
+    };
 
     hoophq-services = {
       url = "git+ssh://git@github.com/hoop3r/hoophq-services.git";
-#      rev = "4743b4b";
+      #      rev = "4743b4b";
     };
-  
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,11 +44,20 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, nix-minecraft, sops-nix, unstable, hoophq-services, nix-darwin, ... }@inputs:
-    let 
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      hyprland,
+      nix-minecraft,
+      sops-nix,
+      unstable,
+      hoophq-services,
+      nix-darwin,
+      ...
+    }@inputs:
+    let
       system = "x86_64-linux";
-      darwinSystem = "aarch64-darwin";
-
       unstablePkgs = import unstable {
         inherit system;
         config = {
@@ -56,15 +65,8 @@
         };
       };
 
-      darwinPkgs = import nixpkgs {
-        system = darwinSystem;
-        config = {
-          allowUnfree = true;
-        };
-      };
-
-      pkgs = import nixpkgs { 
-        inherit system; 
+      pkgs = import nixpkgs {
+        inherit system;
         config = {
           allowUnfree = true;
         };
@@ -74,15 +76,13 @@
             papermcServers = unstablePkgs.papermcServers;
           })
         ];
-      };  
-	
-      pkgslegacy = nixpkgs.legacyPackages.x86_64-linux;
+      };
 
       lib = nixpkgs.lib;
-      
+
     in
-      {
-       darwinConfigurations = {
+    {
+      darwinConfigurations = {
         mcpro = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           specialArgs = { inherit inputs; };
@@ -97,55 +97,55 @@
             }
           ];
         };
-        };
-
-        homeConfigurations = {
-          thinkpad = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = { inherit inputs; };
-            modules = [ 
-              ./hosts/thinkpad/home.nix 
-              ./hosts/thinkpad/modules/git.nix
-              ./hosts/thinkpad/modules/hyprland.nix
-              ./hosts/thinkpad/modules/programs.nix
-              ./hosts/thinkpad/modules/utilities.nix
-              ./hosts/thinkpad/modules/vscode.nix
-            ];
-          };
-          mcpro = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = { inherit inputs; };
-            modules = [ 
-              ./hosts/mcpro/home.nix
-              ./hosts/mcpro/utilities.nix
-            ];
-          };
-        };
-        nixosConfigurations = {
-          thinkpad = lib.nixosSystem {
-            inherit system pkgs;
-            specialArgs = { inherit inputs; };
-            modules = [ 
-              ./hosts/thinkpad/configuration.nix
-              ./hosts/thinkpad/hardware-configuration.nix
-              ./hosts/thinkpad/specialisations.nix
-            ];
-          };
-          hoophq = lib.nixosSystem {
-            inherit system pkgs;
-            specialArgs = { inherit inputs; };
-            modules = [ 
-              ./hosts/hoophq/configuration.nix
-              ./hosts/hoophq/hardware-configuration.nix
-              hoophq-services.nixosModules.containers
-              hoophq-services.nixosModules.minecraft
-              hoophq-services.nixosModules.webserver
-              ./hosts/hoophq/secrets/sops.nix
-              sops-nix.nixosModules.sops
-              nix-minecraft.nixosModules.minecraft-servers
-            ];
-          };
-        };
-
       };
+
+      homeConfigurations = {
+        thinkpad = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/thinkpad/home.nix
+            ./hosts/thinkpad/modules/git.nix
+            ./hosts/thinkpad/modules/hyprland.nix
+            ./hosts/thinkpad/modules/programs.nix
+            ./hosts/thinkpad/modules/utilities.nix
+            ./hosts/thinkpad/modules/vscode.nix
+          ];
+        };
+        mcpro = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/mcpro/home.nix
+            ./hosts/mcpro/utilities.nix
+          ];
+        };
+      };
+      nixosConfigurations = {
+        thinkpad = lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/thinkpad/configuration.nix
+            ./hosts/thinkpad/hardware-configuration.nix
+            ./hosts/thinkpad/specialisations.nix
+          ];
+        };
+        hoophq = lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/hoophq/configuration.nix
+            ./hosts/hoophq/hardware-configuration.nix
+            hoophq-services.nixosModules.containers
+            hoophq-services.nixosModules.minecraft
+            hoophq-services.nixosModules.webserver
+            ./hosts/hoophq/secrets/sops.nix
+            sops-nix.nixosModules.sops
+            nix-minecraft.nixosModules.minecraft-servers
+          ];
+        };
+      };
+
+    };
 }
