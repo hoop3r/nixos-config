@@ -112,14 +112,6 @@
             ./hosts/thinkpad/modules/vscode.nix
           ];
         };
-        mcpro = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/mcpro/home.nix
-            ./hosts/mcpro/utilities.nix
-          ];
-        };
       };
       nixosConfigurations = {
         thinkpad = lib.nixosSystem {

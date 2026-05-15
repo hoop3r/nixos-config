@@ -78,6 +78,8 @@
   };
 
   home.packages = with pkgs; [
+    python3
+    python3Packages.pip
     tmux
     unzip
     ripgrep
@@ -90,9 +92,11 @@
     btop
     yazi
     go
-    rectangle
     kitty
     nixd
     nixfmt
+    wireshark
+    postman
+    utm
   ];
 }
