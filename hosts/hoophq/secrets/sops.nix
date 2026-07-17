@@ -1,52 +1,53 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }: {
 
-let
-  user  = "bugbyte";
-  #hqDir = "/home/${user}/nix-config";
+  sops.age.keyFile = "/home/bugbyte/.config/sops/age/keys.txt";
 
-  mkSecret = { file, key, path }: {
-    sopsFile = file;
-    inherit key path;
-    format = "yaml";
-#    owner  = "feedbot";
-#    group  = "feedbot";
-    mode   = "0640";
+  sops.secrets.strava_client_id = {
+    sopsFile = ./strava.yaml;
+    key = "CLIENT_ID";
+    group = config.services.nginx.group;
+    mode = "0640";
+    owner = config.services.nginx.user;
   };
 
-in
-{
-  sops.age.keyFile = "/home/${user}/nixos-config/hosts/hoophq/secrets/.agekey.txt";
-
-  sops.secrets = {
-    strava_client_id = mkSecret {
-      file = ./strava.yaml;
-      key  = "CLIENT_ID";
-      path = "/run/secrets/strava_client_id";
-    };
-    strava_client_secret = mkSecret {
-      file = ./strava.yaml;
-      key  = "CLIENT_SECRET";
-      path = "/run/secrets/strava_client_secret";
-    };
-    strava_refresh_token = mkSecret {
-      file = ./strava.yaml;
-      key  = "REFRESH_TOKEN";
-      path = "/run/secrets/strava_refresh_token";
-    };
-    lastfm_user = mkSecret {
-      file = ./lastfm.yaml;
-      key  = "USER";
-      path = "/run/secrets/lastfm_user";
-    };
-    lastfm_apikey = mkSecret {
-      file = ./lastfm.yaml;
-      key  = "APIKEY";
-      path = "/run/secrets/lastfm_apikey";
-    };
-    lastfm_endpoint = mkSecret {
-      file = ./lastfm.yaml;
-      key  = "ENDPOINT";
-      path = "/run/secrets/lastfm_endpoint";
-    };
+  sops.secrets.strava_client_secret = {
+    sopsFile = ./strava.yaml;
+    key = "CLIENT_SECRET";
+    group = config.services.nginx.group;
+    mode = "0640";
+    owner = config.services.nginx.user;
   };
+
+  sops.secrets.strava_refresh_token = {
+    sopsFile = ./strava.yaml;
+    key = "REFRESH_TOKEN";
+    group = config.services.nginx.group;
+    mode = "0660";
+    owner = config.services.nginx.user;
+  };
+
+  sops.secrets.lastfm_user = {
+    sopsFile = ./lastfm.yaml;
+    key = "USER";
+    group = config.services.nginx.group;
+    mode = "0640";
+    owner = config.services.nginx.user;
+  };
+
+  sops.secrets.lastfm_apikey = {
+    sopsFile = ./lastfm.yaml;
+    key = "APIKEY";
+    group = config.services.nginx.group;
+    mode = "0640";
+    owner = config.services.nginx.user;
+  };
+
+  sops.secrets.lastfm_endpoint = {
+    sopsFile = ./lastfm.yaml;
+    key = "ENDPOINT";
+    group = config.services.nginx.group;
+    mode = "0640";
+    owner = config.services.nginx.user;
+  };
+
 }

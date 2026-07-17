@@ -5,34 +5,64 @@
     [
       ./hardware-configuration.nix
     ];
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-  boot.blacklistedKernelModules = [ "iwlwifi" ];
-  
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = false;
+
+  # X1 Yoga Gen 6: GuC/HuC firmware improves Intel Xe GPU power management
+  boot.kernelParams = [ "i915.enable_guc=3" ];
+
   networking = {
     networkmanager.enable = true;
     networkmanager.unmanaged = [ "type:802-11-wireless" ];
     hostName = "hoophq";
     firewall = {
-      allowedTCPPorts = [22 80 443 8123 25565];
+      allowedTCPPorts = [ 22 80 443 25565 ];
     };
   };
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
-  
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=no
-    AllowHibernation=no
-    AllowHybridSleep=no
-    AllowSuspendThenHibernate=no
-  '';
+
+  # X1 Yoga Gen 6: prevent any suspend/hibernate path
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = false;
+    AllowHibernation = false;
+    AllowHybridSleep = false;
+    AllowSuspendThenHibernate = false;
+  };
+
+  # X1 Yoga Gen 6: logind handles lid events independently of systemd-sleep
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
+
+  # X1 Yoga Gen 6: stay at full speed since this machine runs as a server
+  powerManagement.cpuFreqGovernor = "performance";
+
+  # X1 Yoga Gen 6: Intel thermal management daemon
+  services.thermald.enable = true;
+
+  # X1 Yoga Gen 6: firmware blobs for AX210 WiFi, Intel Xe GPU, BT
+  hardware.enableRedistributableFirmware = true;
+
+  users.groups.media = {
+    gid = 990;
+  };
+
+  users.users.media = {
+    uid = 990;
+    isSystemUser = true;
+    group = "media";
+  };
 
   users.users.bugbyte = {
     isNormalUser = true;
     description = "Nicholas Hooper";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" "media" ];
     packages = with pkgs; [];
   };
 
@@ -61,6 +91,6 @@
     storage = "persistent";
   };
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 
 }

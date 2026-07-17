@@ -4,7 +4,7 @@
   inputs = {
 
     nixpkgs = {
-      url = "nixpkgs/nixos-25.11";
+      url = "nixpkgs/nixos-26.05";
     };
 
     firefox-addons = {
@@ -13,7 +13,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,7 +38,7 @@
     };
 
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -130,11 +130,11 @@
             ./hosts/hoophq/configuration.nix
             ./hosts/hoophq/hardware-configuration.nix
             hoophq-services.nixosModules.containers
-            hoophq-services.nixosModules.minecraft
+#            hoophq-services.nixosModules.minecraft
             hoophq-services.nixosModules.webserver
             ./hosts/hoophq/secrets/sops.nix
             sops-nix.nixosModules.sops
-            nix-minecraft.nixosModules.minecraft-servers
+#            nix-minecraft.nixosModules.minecraft-servers
           ];
         };
       };
