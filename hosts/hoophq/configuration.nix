@@ -64,6 +64,9 @@
     description = "Nicholas Hooper";
     extraGroups = [ "networkmanager" "wheel" "podman" "media" ];
     packages = with pkgs; [];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJzydk8Z5OxEqRfkip1b/i9qZLncsjaW+67s6NLH6u8h nhoop2107@gmail.com"
+    ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
