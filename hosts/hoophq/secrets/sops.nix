@@ -50,4 +50,22 @@
     owner = config.services.nginx.user;
   };
 
+  sops.secrets.authentik_pg_pass = {
+    sopsFile = ./authentik.yaml;
+    key      = "PG_PASS";
+  };
+
+  sops.secrets.authentik_secret_key = {
+    sopsFile = ./authentik.yaml;
+    key      = "SECRET_KEY";
+  };
+
+  sops.templates."authentik.env".content = ''
+    POSTGRES_PASSWORD=${config.sops.placeholder.authentik_pg_pass}
+    AUTHENTIK_POSTGRESQL__PASSWORD=${config.sops.placeholder.authentik_pg_pass}
+    AUTHENTIK_SECRET_KEY=${config.sops.placeholder.authentik_secret_key}
+    POSTGRES_USER=authentik
+    POSTGRES_DB=authentik
+  '';
+
 }

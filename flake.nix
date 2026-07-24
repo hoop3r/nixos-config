@@ -132,6 +132,7 @@
             hoophq-services.nixosModules.containers
 #            hoophq-services.nixosModules.minecraft
             hoophq-services.nixosModules.webserver
+            hoophq-services.nixosModules.authentik
             ./hosts/hoophq/secrets/sops.nix
             sops-nix.nixosModules.sops
 #            nix-minecraft.nixosModules.minecraft-servers
