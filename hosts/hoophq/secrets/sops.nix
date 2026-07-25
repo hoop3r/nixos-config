@@ -60,12 +60,27 @@
     key      = "SECRET_KEY";
   };
 
+  sops.secrets.authentik_redis_pass = {
+    sopsFile = ./authentik.yaml;
+    key      = "REDIS_PASS";
+  };
+
   sops.templates."authentik.env".content = ''
     POSTGRES_PASSWORD=${config.sops.placeholder.authentik_pg_pass}
     AUTHENTIK_POSTGRESQL__PASSWORD=${config.sops.placeholder.authentik_pg_pass}
     AUTHENTIK_SECRET_KEY=${config.sops.placeholder.authentik_secret_key}
+    AUTHENTIK_REDIS__PASSWORD=${config.sops.placeholder.authentik_redis_pass}
     POSTGRES_USER=authentik
     POSTGRES_DB=authentik
   '';
+
+  sops.templates."redis.conf" = {
+    content = ''
+      requirepass ${config.sops.placeholder.authentik_redis_pass}
+      save 60 1
+      loglevel warning
+    '';
+    mode = "0644";
+  };
 
 }

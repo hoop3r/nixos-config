@@ -113,11 +113,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1784871627,
-        "narHash": "sha256-yLnUSvNynZIK/1p+CjFelfwRhrASeMAtt5GTwQg419o=",
+        "lastModified": 1784949335,
+        "narHash": "sha256-n4lh8x/2l43V19ADXnXE3jDZl5MQRJpIzjC1ltH7S+M=",
         "ref": "refs/heads/main",
-        "rev": "de3fd52017b492b7a47a73117da15fab280379d8",
-        "revCount": 19,
+        "rev": "5fece3465dfe0e9ca7516e05bb30d382a32fab57",
+        "revCount": 31,
         "type": "git",
         "url": "ssh://git@github.com/hoop3r/hoophq-services.git"
       },
