@@ -131,6 +131,7 @@
             ./hosts/hoophq/hardware-configuration.nix
             hoophq-services.nixosModules.containers
 #            hoophq-services.nixosModules.minecraft
+            hoophq-services.nixosModules.music
             hoophq-services.nixosModules.webserver
             hoophq-services.nixosModules.authentik
             ./hosts/hoophq/secrets/sops.nix
