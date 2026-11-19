@@ -32,6 +32,8 @@ in
 
   programs.zsh = {
     enable = true;
+    # Keep ~/.zshrc in $HOME (the pre-26.05 default) rather than ~/.config/zsh.
+    dotDir = config.home.homeDirectory;
 
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
@@ -101,13 +103,12 @@ in
       glog = "git log --oneline --graph --decorate -20";
 
       # nix / this flake
-      rebuild = "sudo darwin-rebuild switch --flake $FLAKE#mcpro";
-      rebuild-check = "darwin-rebuild check --flake $FLAKE#mcpro";
-      rebuild-build = "darwin-rebuild build --flake $FLAKE#mcpro";
+      # `#` must be quoted: with EXTENDED_GLOB it is a glob operator.
+      rebuild = "sudo darwin-rebuild switch --flake \"$FLAKE#mcpro\"";
+      rebuild-check = "darwin-rebuild check --flake \"$FLAKE#mcpro\"";
+      rebuild-build = "darwin-rebuild build --flake \"$FLAKE#mcpro\"";
       flake-update = "nix flake update --flake $FLAKE";
       ngc = "nix-collect-garbage -d";
-      nsh = "nix shell nixpkgs#";
-      nrun = "nix run nixpkgs#";
       nsearch = "nix search nixpkgs";
       nfmt = "nixfmt $FLAKE/**/*.nix";
       nrepl = "nix repl --expr \"builtins.getFlake \\\"$FLAKE\\\"\"";
@@ -199,6 +200,11 @@ in
 
       # ── helpers ──────────────────────────────────────────────────────────
       mkcd() { mkdir -p -- "$1" && cd -- "$1"; }
+
+      # `nsh ripgrep jq` == nix shell nixpkgs#ripgrep nixpkgs#jq
+      nsh() { nix shell "''${@/#/nixpkgs#}"; }
+      # `nrun cowsay hi` == nix run nixpkgs#cowsay -- hi
+      nrun() { nix run "nixpkgs#$1" -- "''${@:2}"; }
 
       # `up 3` == cd ../../..
       up() {
