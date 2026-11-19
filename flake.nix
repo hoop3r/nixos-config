@@ -42,6 +42,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Wazuh 4.14.10 server stack (indexer + manager + dashboard) as NixOS
+    # modules, from github:nealfennimore/wazuh-nixos. Consumed by
+    # ./hosts/hoophq/wazuh.nix.
+    #
+    # Deliberately NO `inputs.nixpkgs.follows = "nixpkgs"`. That flake pins
+    # nixos-unstable; this one pins stable nixos-26.05. Pointing it at ours
+    # rewrites every derivation hash in its closure, which voids every hit on
+    # wazuh.cachix.org and leaves this box compiling the manager daemons and
+    # their bundled CPython from source. The modules carry their own packages,
+    # so there is nothing to gain by sharing nixpkgs and a multi-hour build to
+    # lose. Cache config lives in hosts/hoophq/wazuh.nix.
+    #
+    # The flake has NO darwin outputs -- its systems are x86_64-linux and
+    # aarch64-linux only -- which is why mcpro installs the official upstream
+    # .pkg instead. See ./hosts/mcpro/wazuh-agent.nix.
+    wazuh = {
+      url = "github:nealfennimore/wazuh-nixos";
+    };
+
   };
 
   outputs =
@@ -88,6 +107,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/mcpro/configuration.nix
+            ./hosts/mcpro/wazuh-agent.nix
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -136,6 +156,7 @@
             hoophq-services.nixosModules.authentik
             ./hosts/hoophq/secrets/sops.nix
             sops-nix.nixosModules.sops
+            ./hosts/hoophq/wazuh.nix
 #            nix-minecraft.nixosModules.minecraft-servers
           ];
         };
