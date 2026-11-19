@@ -3,3 +3,4 @@ hosts/hoophq/secrets/wireguard.env
 hosts/hoophq/strava.env
 devshells/
 result
+.vscode/
