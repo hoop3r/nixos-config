@@ -72,11 +72,29 @@ let
     hash = "sha256-G1Khh3CM77y4LArYKLQjxrXD3S19hSFqnNhf/+XSg10=";
   };
 
-  # MagicDNS, not the raw 100.124.247.94, because the manager's authd
-  # certificate carries this name in its SAN and enrollment verifies it. The
-  # IP is in that SAN too, so swapping to it works if MagicDNS ever misbehaves
-  # -- but then this agent only reaches hoophq over the tailnet either way.
-  managerHost = "hoophq.tail072ce1.ts.net";
+  # The raw tailnet IP, NOT the MagicDNS name, and this is deliberate.
+  #
+  # Tested from hoophq 2026-11-19 and it is a real trap: this tailnet has
+  # Tailscale Funnel enabled (for Home Assistant), so PUBLIC DNS for
+  # hoophq.tail072ce1.ts.net answers with the Funnel ingress addresses --
+  # 209.177.145.97, 209.177.145.192, 2607:f740:f::67 -- which forward only the
+  # Funnel-published port and nothing else. Connecting to :1514 or :1515 there
+  # just hangs. Only the tailnet resolver gives the right answer:
+  #
+  #   dig +short hoophq.tail072ce1.ts.net            -> 209.177.145.97  (Funnel)
+  #   dig +short @100.100.100.100 hoophq...          -> 100.124.247.94  (correct)
+  #
+  # So the FQDN is correct ONLY on a client with MagicDNS on (CorpDNS true).
+  # hoophq itself runs --accept-dns=false, and assuming the opposite on mcpro
+  # would be a silent, intermittent enrollment failure that looks like a
+  # firewall problem. The IP needs no resolver at all.
+  #
+  # Safe for enrollment because the manager's authd certificate carries
+  # IP:100.124.247.94 in its SAN as well as DNS:hoophq.tail072ce1.ts.net (see
+  # the `issue server` line in ../hoophq/wazuh.nix), so verification against
+  # the CA succeeds either way. Switch to the FQDN only after confirming
+  # `tailscale debug prefs | grep CorpDNS` is true on this machine.
+  managerHost = "100.124.247.94";
   agentName = "mcpro";
 
   ossecDir = "/Library/Ossec";

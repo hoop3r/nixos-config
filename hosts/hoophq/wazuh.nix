@@ -32,12 +32,32 @@
 # outputs, so mcpro installs the official upstream .pkg instead -- read that
 # file before touching enrollment here, the two share AUTHD_PASS and the CA.
 #
-# FOOTPRINT, because this box is not roomy. Measured budget: the indexer JVM is
-# capped at 2 GB heap (heapSize below), the dashboard's node process sits near
-# 500 MB, and the manager daemons are a few hundred MB between them. Index data
-# at 30 day retention for two endpoints is low single-digit GB. / was at 87%
-# when this went in, so check `df -h /` before adding agents and before
-# flipping logAll on.
+# FOOTPRINT. Measured on this host 2026-11-19, ~1h after the first switch,
+# MemoryCurrent per unit, no agents enrolled yet:
+#
+#   wazuh-indexer     2607 MiB   the JVM, capped at 2g heap (heapSize below)
+#   wazuh-modulesd    1997 MiB   <- the surprise; see below
+#   wazuh-dashboard    264 MiB
+#   wazuh-apid         245 MiB
+#   everything else    ~110 MiB  analysisd, filebeat, db, remoted, syscheckd...
+#   ----------------------------
+#   total             5116 MiB
+#
+# That is well above the 3.5-4 GB this file originally estimated, and the whole
+# difference is wazuh-modulesd. It is not a leak: modulesd runs the 4.x
+# vulnerability detector, which holds the CVE content database in memory, and
+# it stands up a dozen indexer connectors on startup
+# (wazuh-states-vulnerabilities-hoophq, wazuh-states-inventory-*-hoophq).
+# Budget ~2 GB for it and do not be alarmed by the number.
+#
+# Headroom after this: 7.6 GiB available of 15 GiB, alongside Home Assistant,
+# Plex, the 12 mediastack containers and nginx. Comfortable but not generous --
+# `free -h` before adding anything large, and if the box starts swapping, drop
+# heapSize to 1g before touching anything else.
+#
+# Disk: / went from 87% to 65% used (157 GB free) when space was cleared for
+# this. Index data at 30 day retention for two endpoints is low single-digit
+# GB. Check `df -h /` before adding agents and before flipping logAll on.
 {
   config,
   pkgs,
@@ -80,7 +100,7 @@ let
   # says 2-3 GB rather than a few hundred MB.
   wazuhPkgs = inputs.wazuh.packages.${pkgs.stdenv.hostPlatform.system};
 
-  # Delete wazuh-alerts/wazuh-archives indices 30 days after creation.
+  # Delete time-series indices 30 days after creation.
   #
   # The indexer module has no ISM option, so this goes in through the API via
   # wazuh-indexer-retention.service. Written as Nix rather than a heredoc so
@@ -88,6 +108,13 @@ let
   # wrong. ism_template binds the policy to indices created AFTER the policy
   # exists, which is why the unit also runs an explicit _ism/add over any
   # indices that already exist.
+  #
+  # DELIBERATELY EXCLUDED: wazuh-states-inventory and
+  # wazuh-states-vulnerabilities. Those hold CURRENT state, not a time series,
+  # so there is no old data in them to expire -- an age-based delete there
+  # would throw away the live package inventory and the current vulnerability
+  # findings and call it housekeeping. Only ever add dated/rolling patterns to
+  # the list below.
   retentionId = "wazuh-retention-30d";
   retentionPolicy = pkgs.writeText "${retentionId}.json" (builtins.toJSON {
     policy = {
@@ -115,6 +142,12 @@ let
           index_patterns = [
             "wazuh-alerts-4.x-*"
             "wazuh-archives-4.x-*"
+            # Weekly rolling indices the dashboard creates (observed
+            # wazuh-monitoring-2026.47w and wazuh-statistics-2026.47w on the
+            # first boot). Small per week, but nothing else prunes them, so
+            # without these two patterns they grow for as long as the box runs.
+            "wazuh-monitoring-*"
+            "wazuh-statistics-*"
           ];
           priority = 100;
         }
@@ -549,7 +582,7 @@ in
       # it to anything already on disk. Expected to report failures for indices
       # that are already managed, so this is explicitly not --fail and not
       # fatal.
-      for pattern in 'wazuh-alerts-*' 'wazuh-archives-*'; do
+      for pattern in 'wazuh-alerts-*' 'wazuh-archives-*' 'wazuh-monitoring-*' 'wazuh-statistics-*'; do
         ic -X POST "$api/_plugins/_ism/add/$pattern" \
           -H 'Content-Type: application/json' \
           -d "{\"policy_id\":\"$id\"}" || true
